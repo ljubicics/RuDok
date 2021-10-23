@@ -8,7 +8,7 @@ public class NewAction extends AbstractRudokAction{
 
     public NewAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F10, ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("images\\new.png"));
+        putValue(SMALL_ICON, loadIcon("images/new.png"));
         putValue(NAME, "New");
         putValue(SHORT_DESCRIPTION, "New");
     }
