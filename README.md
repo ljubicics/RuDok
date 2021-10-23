@@ -2,4 +2,4 @@
 rudok-strahinja-ljubicicRN71-20 created by GitHub Classroom
 
 
-Strahinja LjubiČić RN71-20
+Strahinja Ljubičić RN71-20
