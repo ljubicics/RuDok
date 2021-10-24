@@ -9,6 +9,8 @@ public class MainFrame extends JFrame {
     private static MainFrame instance = null;
     private ActionManager actionManager;
     private MenuBar menuBar;
+    private ToolBar toolBar;
+
     private MainFrame() {
 
     }
@@ -30,6 +32,18 @@ public class MainFrame extends JFrame {
 
         menuBar = new MenuBar();
         setJMenuBar(menuBar);
+        toolBar = new ToolBar();
+        add(toolBar, BorderLayout.NORTH);
+
+        JScrollPane scrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        JPanel panelRight = new JPanel();
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollPane, panelRight);
+        splitPane.setOneTouchExpandable(true);
+        splitPane.setDividerLocation(150);
+        Dimension minSize = new Dimension(150,50);
+        scrollPane.setMinimumSize(minSize);
+        panelRight.setMinimumSize(minSize);
+        add(splitPane);
 
     }
 
