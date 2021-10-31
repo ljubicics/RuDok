@@ -18,6 +18,6 @@ public class InfoAction extends AbstractRudokAction{
 
 
     public void actionPerformed(ActionEvent e) {
-        InfoDialog infoDialog = new InfoDialog();
+        InfoDialog infoDialog = new InfoDialog(MainFrame.getInstance());
     }
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class InfoDialog extends JDialog {
 
-    public InfoDialog() {
+    public InfoDialog(JFrame parent) {
         setTitle("Info");
         JLabel lblPrezime = new JLabel("Prezime: Ljubicic");
         JLabel lblIme = new JLabel("Ime: Strahinja");
@@ -17,14 +17,14 @@ public class InfoDialog extends JDialog {
 
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File("images\\slika.jpeg"));
+            img = ImageIO.read(new File("src/view/dialog/DialogImages/slika.jpeg"));
         } catch (IOException e) {
             System.err.println("Error while loading image");
         }
 
         BufferedImage img2 = null;
         try {
-            img2 = ImageIO.read(new File("images\\info.png"));
+            img2 = ImageIO.read(new File("src/view/dialog/DialogImages/info.png"));
         } catch (IOException e) {
             System.err.println("Error while loading image");
         }
@@ -48,7 +48,7 @@ public class InfoDialog extends JDialog {
         this.setModalityType(ModalityType.APPLICATION_MODAL);
         this.setAlwaysOnTop(true);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        this.setLocationRelativeTo(getParent());
+        this.setLocationRelativeTo(parent);
         this.setResizable(false);
         this.setVisible(true);
     }
