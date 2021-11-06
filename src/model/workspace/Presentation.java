@@ -1,6 +1,6 @@
-package model.nodemodels;
+package model.workspace;
 
-import model.RuNodeComposite;
+import model.nodes.RuNodeComposite;
 
 public class Presentation extends RuNodeComposite {
     public Presentation(String name, RuNodeComposite parent) {

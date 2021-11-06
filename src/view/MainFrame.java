@@ -1,6 +1,10 @@
 package view;
 
 import controller.ActionManager;
+import model.workspace.Workspace;
+import view.tree.model.MyTreeModel;
+import view.tree.model.MyTreeNode;
+import view.tree.view.MyTree;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +14,8 @@ public class MainFrame extends JFrame {
     private ActionManager actionManager;
     private MenuBar menuBar;
     private ToolBar toolBar;
+    private MyTree myTree;
+    private MyTreeModel myModel;
 
     private MainFrame() {
 
@@ -17,6 +23,8 @@ public class MainFrame extends JFrame {
 
     private void initialise() {
         this.actionManager = new ActionManager();
+        initialiseTree();
+
         initialiseGUI();
     }
 
@@ -35,7 +43,7 @@ public class MainFrame extends JFrame {
         toolBar = new ToolBar();
         add(toolBar, BorderLayout.NORTH);
 
-        JScrollPane scrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        JScrollPane scrollPane = new JScrollPane(myTree ,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         JPanel panelRight = new JPanel();
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollPane, panelRight);
         splitPane.setOneTouchExpandable(true);
@@ -45,6 +53,14 @@ public class MainFrame extends JFrame {
         panelRight.setMinimumSize(minSize);
         add(splitPane);
 
+    }
+
+    private void initialiseTree(){
+        Workspace w = new Workspace("Workspace", null);
+        MyTreeNode node = new MyTreeNode(w);
+        myModel = new MyTreeModel(node);
+        myTree = new MyTree();
+        myTree.setModel(myModel);
     }
 
     public static MainFrame getInstance() {
