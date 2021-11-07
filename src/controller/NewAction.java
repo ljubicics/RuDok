@@ -1,6 +1,7 @@
 package controller;
 
 
+import controller.dialogs.AddNewPresentationDialog;
 import model.nodes.RuNode;
 import model.workspace.Presentation;
 import model.workspace.Project;
@@ -28,16 +29,13 @@ public class NewAction extends AbstractRudokAction{
         RuNode node = o.getN();
         if(node instanceof Workspace) {
             System.out.println(((Workspace) node).getNodeChildren().isEmpty());
-            Project p = new Project("Projekat", (Workspace) node);
+            Project p = new Project("Projekat" + (((Workspace) node).getNodeChildren().size()+1), (Workspace) node);
             ((Workspace) node).addChild(p);
             System.out.println(((Workspace) node).getNodeChildren().isEmpty());
             SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
         }
         if(node instanceof Project) {
-            Presentation pres = new Presentation("Prezentacija", (Project)node);
-            ((Project) node).addChild(pres);
-            SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
-            System.out.println(((Project) node).getNodeChildren().isEmpty());
+            AddNewPresentationDialog dialog = new AddNewPresentationDialog(MainFrame.getInstance(), node);
             SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
         }
         if(node instanceof Presentation) {

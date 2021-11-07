@@ -1,7 +1,7 @@
 package controller;
 
 import view.MainFrame;
-import dialogs.InfoDialog;
+import controller.dialogs.InfoDialog;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
