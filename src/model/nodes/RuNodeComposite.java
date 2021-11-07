@@ -10,12 +10,11 @@ public class RuNodeComposite extends RuNode {
         super(name, parent);
         this.nodeChildren = new ArrayList<>();
     }
-
-    public void addChild(RuNode n) {
-        nodeChildren.add(n);
+    public void add(RuNode n) {
+        this.nodeChildren.add(n);
     }
 
-    public void removeChile(RuNode n) {
+    public void removeChild(RuNode n) {
         nodeChildren.remove(n);
     }
 
@@ -26,4 +25,6 @@ public class RuNodeComposite extends RuNode {
     public void setNodeChildren(ArrayList<RuNode> nodeChildren) {
         this.nodeChildren = nodeChildren;
     }
+
+
 }

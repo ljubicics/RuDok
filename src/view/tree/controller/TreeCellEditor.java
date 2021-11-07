@@ -1,9 +1,17 @@
 package view.tree.controller;
 
+import model.nodes.RuNode;
+import model.workspace.Presentation;
+import model.workspace.Project;
+import model.workspace.Slide;
+import model.workspace.Workspace;
+import view.tree.model.MyTreeNode;
+
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.EventObject;
@@ -33,4 +41,18 @@ public class TreeCellEditor extends DefaultTreeCellEditor implements ActionListe
         return false;
     }
 
+    public void actionPerformed(ActionEvent e) {
+        MyTreeNode mtn = (MyTreeNode) stavka;
+        RuNode n = mtn.getN();
+
+        if (n instanceof Project) {
+            n.setName(e.getActionCommand());
+        } else if (n instanceof Presentation) {
+            n.setName(e.getActionCommand());
+        } else if (n instanceof Slide) {
+            n.setName(e.getActionCommand());
+        } else {
+            n.setName(e.getActionCommand());
+        }
+    }
 }

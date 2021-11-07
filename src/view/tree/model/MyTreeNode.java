@@ -51,21 +51,29 @@ public class MyTreeNode implements MutableTreeNode {
 
     @Override
     public TreeNode getChildAt(int childIndex) {
+        if(n instanceof RuNodeComposite){
+           RuNode rn = ((RuNodeComposite) n).getNodeChildren().get(childIndex);
+           return new MyTreeNode(rn);
+        }
         return null;
     }
 
     @Override
     public int getChildCount() {
+        if(n instanceof RuNodeComposite)
+            return ((RuNodeComposite) n).getNodeChildren().size();
         return 0;
     }
 
     @Override
     public TreeNode getParent() {
-        return null;
+        return (TreeNode) n.getParent();
     }
 
     @Override
     public int getIndex(TreeNode node) {
+        if(n instanceof RuNodeComposite)
+            return ((RuNodeComposite) n).getNodeChildren().indexOf(node);
         return 0;
     }
 
@@ -82,5 +90,13 @@ public class MyTreeNode implements MutableTreeNode {
     @Override
     public Enumeration<? extends TreeNode> children() {
         return null;
+    }
+
+    public RuNode getN() {
+        return n;
+    }
+
+    public void setN(RuNode n) {
+        this.n = n;
     }
 }

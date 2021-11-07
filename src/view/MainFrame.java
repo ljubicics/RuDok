@@ -1,6 +1,7 @@
 package view;
 
 import controller.ActionManager;
+import model.workspace.Project;
 import model.workspace.Workspace;
 import view.tree.model.MyTreeModel;
 import view.tree.model.MyTreeNode;
@@ -81,5 +82,21 @@ public class MainFrame extends JFrame {
 
     public void setActionManager(ActionManager actionManager) {
         this.actionManager = actionManager;
+    }
+
+    public MyTree getMyTree() {
+        return myTree;
+    }
+
+    public void setMyTree(MyTree myTree) {
+        this.myTree = myTree;
+    }
+
+    public MyTreeModel getMyModel() {
+        return myModel;
+    }
+
+    public void setMyModel(MyTreeModel myModel) {
+        this.myModel = myModel;
     }
 }

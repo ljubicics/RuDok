@@ -1,5 +1,15 @@
 package controller;
 
+
+import model.nodes.RuNode;
+import model.workspace.Presentation;
+import model.workspace.Project;
+import model.workspace.Slide;
+import model.workspace.Workspace;
+import view.MainFrame;
+
+import view.tree.model.MyTreeNode;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -14,6 +24,26 @@ public class NewAction extends AbstractRudokAction{
     }
 
     public void actionPerformed(ActionEvent e) {
-
+        MyTreeNode o = (MyTreeNode) MainFrame.getInstance().getMyTree().getLastSelectedPathComponent();
+        RuNode node = o.getN();
+        if(node instanceof Workspace) {
+            System.out.println(((Workspace) node).getNodeChildren().isEmpty());
+            Project p = new Project("Projekat", (Workspace) node);
+            ((Workspace) node).addChild(p);
+            System.out.println(((Workspace) node).getNodeChildren().isEmpty());
+            SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
+        }
+        if(node instanceof Project) {
+            Presentation pres = new Presentation("Prezentacija", (Project)node);
+            ((Project) node).addChild(pres);
+            SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
+            System.out.println(((Project) node).getNodeChildren().isEmpty());
+            SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
+        }
+        if(node instanceof Presentation) {
+            Slide s = new Slide("Slide", node);
+            ((Presentation) node).add(s);
+            SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
+       }
     }
 }
