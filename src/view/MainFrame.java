@@ -34,7 +34,7 @@ public class MainFrame extends JFrame {
         Dimension screenSize = kit.getScreenSize();
         int screenWidth = screenSize.width;
         int screenHeight = screenSize.height;
-        setSize(screenWidth/2, screenHeight/2);
+        setSize((int) (screenWidth/1.2), (int) (screenHeight/1.2));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("RuDok");
