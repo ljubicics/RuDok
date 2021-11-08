@@ -1,4 +1,4 @@
-package controller.dialogs;
+package view.dialogs;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,14 +17,14 @@ public class InfoDialog extends JDialog {
 
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File("src/controller/dialogs/dialogImages/slika.jpeg"));
+            img = ImageIO.read(new File("src/view/dialogs/dialogImages/slika.jpeg"));
         } catch (IOException e) {
             System.err.println("Error while loading image");
         }
 
         BufferedImage img2 = null;
         try {
-            img2 = ImageIO.read(new File("src/controller/dialogs/dialogImages/info.png"));
+            img2 = ImageIO.read(new File("src/view/dialogs/dialogImages/info.png"));
         } catch (IOException e) {
             System.err.println("Error while loading image");
         }

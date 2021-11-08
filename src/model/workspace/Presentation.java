@@ -3,17 +3,16 @@ package model.workspace;
 import model.nodes.RuNode;
 import model.nodes.RuNodeComposite;
 
-import java.awt.*;
 
 public class Presentation extends RuNodeComposite {
 
     private String autor;
-    private Image img;
+    private String url;
 
-    public Presentation(String name, RuNodeComposite parent, String autor, Image img) {
+    public Presentation(String name, RuNodeComposite parent, String autor, String url) {
         super(name, parent);
         this.autor = autor;
-        this.img = img;
+        this.url = url;
     }
 
     public void addChild(RuNode n) {
@@ -27,5 +26,13 @@ public class Presentation extends RuNodeComposite {
 
     public void setAutor(String autor) {
         this.autor = autor;
+    }
+
+    public String getURL() {
+        return url;
+    }
+
+    public void setURL(String url) {
+        this.url = url;
     }
 }

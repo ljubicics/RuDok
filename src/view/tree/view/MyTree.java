@@ -14,6 +14,5 @@ public class MyTree extends JTree {
         setCellEditor(new TreeCellEditor(this, new DefaultTreeCellRenderer()));
         setCellRenderer(new TreeCellRenderer());
         setEditable(true);
-
     }
 }

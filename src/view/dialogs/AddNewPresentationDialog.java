@@ -1,22 +1,17 @@
-package controller.dialogs;
+package view.dialogs;
 
 import model.nodes.RuNode;
 import model.workspace.Presentation;
 import model.workspace.Project;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-
+import java.net.URL;
 
 public class AddNewPresentationDialog extends JDialog {
 
-    private BufferedImage img;
+    private String url;
 
     public AddNewPresentationDialog(JFrame parent, RuNode node) {
         setTitle("Add Autor and picture");
@@ -73,18 +68,15 @@ public class AddNewPresentationDialog extends JDialog {
             if(value == JFileChooser.APPROVE_OPTION) {
                 File f = fileChooser.getSelectedFile();
                 slikaTF.setText(f.getPath());
-                try {
-                    img = ImageIO.read(f);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                url = f.getPath();
+                System.out.println(url);
             }
         });
 
         btnAdd.addActionListener(e -> {
             String autor = autorTF.getText();
             String naziv = nazivTF.getText();
-            ((Project)node).addChild(new Presentation(naziv, (Project)node, autor, img));
+            ((Project)node).addChild(new Presentation(naziv, (Project)node, autor, url));
 
            dispose();
         });

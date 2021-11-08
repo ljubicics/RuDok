@@ -1,8 +1,10 @@
 package view;
 
 import controller.ActionManager;
+import controller.DoubleClickProjectController;
 import model.workspace.Project;
 import model.workspace.Workspace;
+import view.tree.controller.TreeCellRenderer;
 import view.tree.model.MyTreeModel;
 import view.tree.model.MyTreeNode;
 import view.tree.view.MyTree;
@@ -17,6 +19,7 @@ public class MainFrame extends JFrame {
     private ToolBar toolBar;
     private MyTree myTree;
     private MyTreeModel myModel;
+    private JSplitPane splitPaneSaver;
 
     private MainFrame() {
 
@@ -53,7 +56,7 @@ public class MainFrame extends JFrame {
         scrollPane.setMinimumSize(minSize);
         panelRight.setMinimumSize(minSize);
         add(splitPane);
-
+        this.splitPaneSaver = splitPane;
     }
 
     private void initialiseTree(){
@@ -62,6 +65,7 @@ public class MainFrame extends JFrame {
         myModel = new MyTreeModel(node);
         myTree = new MyTree();
         myTree.setModel(myModel);
+        new DoubleClickProjectController(myTree);
     }
 
     public static MainFrame getInstance() {
@@ -71,6 +75,7 @@ public class MainFrame extends JFrame {
         }
         return instance;
     }
+
 
     public static void setInstance(MainFrame instance) {
         MainFrame.instance = instance;
@@ -98,5 +103,13 @@ public class MainFrame extends JFrame {
 
     public void setMyModel(MyTreeModel myModel) {
         this.myModel = myModel;
+    }
+
+    public JSplitPane getSplitPaneSaver() {
+        return splitPaneSaver;
+    }
+
+    public void setSplitPaneSaver(JSplitPane splitPaneSaver) {
+        this.splitPaneSaver = splitPaneSaver;
     }
 }
