@@ -7,7 +7,6 @@ import model.workspace.Project;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.net.URL;
 
 public class AddNewPresentationDialog extends JDialog {
 

@@ -28,7 +28,7 @@ public class SlideView extends JPanel {
         Image img = null;
         try {
              img = ImageIO.read(new File(url));
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
