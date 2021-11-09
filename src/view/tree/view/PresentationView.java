@@ -4,6 +4,7 @@ import model.nodes.RuNode;
 import model.workspace.Presentation;
 import model.workspace.Slide;
 import observer.ISubscriber;
+import view.tree.model.MyTreeNode;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +14,7 @@ import java.util.List;
 public class PresentationView extends JPanel implements ISubscriber {
 
     private JLabel autorName;
+    private JPanel boxPanel;
     private Presentation presentation;
     private List<RuNode> children;
     private String url;
@@ -28,7 +30,7 @@ public class PresentationView extends JPanel implements ISubscriber {
         this.add(autorName, BorderLayout.NORTH);
         children.addAll(presentation.getNodeChildren());
         url = presentation.getURL();
-        JPanel boxPanel = new JPanel();
+        boxPanel = new JPanel();
         boxPanel.setLayout(new BoxLayout(boxPanel, BoxLayout.Y_AXIS));
 
         for(RuNode ruNode : children) {
@@ -65,6 +67,14 @@ public class PresentationView extends JPanel implements ISubscriber {
         this.url = url;
     }
 
+    public Presentation getPresentation() {
+        return presentation;
+    }
+
+    public void setPresentation(Presentation presentation) {
+        this.presentation = presentation;
+    }
+
     @Override
     public void update(Object notification) {
         RuNode n = (Presentation) notification;
@@ -76,5 +86,14 @@ public class PresentationView extends JPanel implements ISubscriber {
             }
         }
         tabbedPane.setTitleAt(i, n.getName());
+
+        MyTreeNode mtn = new MyTreeNode(n);
+        if(mtn.getChildCount() > boxPanel.getComponentCount()) {
+            RuNode rn = children.get(children.size()-1);
+            SlideView slideView = new SlideView((Slide) rn, url);
+            boxPanel.add(slideView);
+            this.revalidate();
+            this.repaint();
+        }
     }
 }

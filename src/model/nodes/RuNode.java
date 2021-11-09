@@ -47,7 +47,9 @@ public class RuNode implements IPublisher {
 
     @Override
     public void removeSubscriber(ISubscriber sub) {
-
+        if(sub == null || this.subscribers == null || !this.subscribers.contains(sub))
+            return;
+        this.subscribers.remove(sub);
     }
 
     @Override

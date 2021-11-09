@@ -1,8 +1,10 @@
 package model.nodes;
 
+import observer.IPublisher;
+
 import java.util.ArrayList;
 
-public class RuNodeComposite extends RuNode {
+public class RuNodeComposite extends RuNode implements IPublisher {
 
     private ArrayList<RuNode> nodeChildren;
 
@@ -12,6 +14,7 @@ public class RuNodeComposite extends RuNode {
     }
     public void add(RuNode n) {
         this.nodeChildren.add(n);
+        notifySubscribers(this);
     }
 
     public void removeChild(RuNode n) {
@@ -25,6 +28,5 @@ public class RuNodeComposite extends RuNode {
     public void setNodeChildren(ArrayList<RuNode> nodeChildren) {
         this.nodeChildren = nodeChildren;
     }
-
 
 }
