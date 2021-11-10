@@ -1,6 +1,5 @@
 package model.workspace;
 
-import model.nodes.RuNode;
 import model.nodes.RuNodeComposite;
 
 public class Project extends RuNodeComposite{
@@ -9,8 +8,4 @@ public class Project extends RuNodeComposite{
         super(name, parent);
     }
 
-    public void addChild(RuNode n) {
-        if(n instanceof Presentation)
-            super.add(n);
-    }
 }

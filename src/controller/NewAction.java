@@ -26,7 +26,13 @@ public class NewAction extends AbstractRudokAction{
 
     public void actionPerformed(ActionEvent e) {
         MyTreeNode o = (MyTreeNode) MainFrame.getInstance().getMyTree().getLastSelectedPathComponent();
-        RuNode node = o.getN();
+        RuNode node = null;
+        if(o != null) {
+            node = o.getN();
+
+        } else {
+            System.out.println("Nije selektovan cvor");
+        }
         if(node instanceof Workspace) {
             System.out.println(((Workspace) node).getNodeChildren().isEmpty());
             Project p = new Project("Projekat " + (((Workspace) node).getNodeChildren().size()+1), (Workspace) node);

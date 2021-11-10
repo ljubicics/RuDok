@@ -3,11 +3,11 @@ package view.tree.model;
 import model.nodes.RuNode;
 import model.nodes.RuNodeComposite;
 
-import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 import java.util.Enumeration;
 
-public class MyTreeNode implements MutableTreeNode {
+public class MyTreeNode extends DefaultMutableTreeNode {
     private RuNode n;
 
     public MyTreeNode(RuNode n) {
@@ -17,36 +17,6 @@ public class MyTreeNode implements MutableTreeNode {
     @Override
     public String toString() {
         return n.getName();
-    }
-
-    @Override
-    public void insert(MutableTreeNode child, int index) {
-
-    }
-
-    @Override
-    public void remove(int index) {
-
-    }
-
-    @Override
-    public void remove(MutableTreeNode node) {
-
-    }
-
-    @Override
-    public void setUserObject(Object object) {
-
-    }
-
-    @Override
-    public void removeFromParent() {
-
-    }
-
-    @Override
-    public void setParent(MutableTreeNode newParent) {
-
     }
 
     @Override
@@ -66,8 +36,8 @@ public class MyTreeNode implements MutableTreeNode {
     }
 
     @Override
-    public TreeNode getParent() {
-        return (TreeNode) n.getParent();
+    public MyTreeNode getParent() {
+        return new MyTreeNode(n.getParent());
     }
 
     @Override
@@ -88,7 +58,7 @@ public class MyTreeNode implements MutableTreeNode {
     }
 
     @Override
-    public Enumeration<? extends TreeNode> children() {
+    public Enumeration<TreeNode> children() {
         return null;
     }
 

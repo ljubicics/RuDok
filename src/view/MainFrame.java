@@ -108,6 +108,12 @@ public class MainFrame extends JFrame {
     public JSplitPane getSplitPaneSaver() {
         return splitPaneSaver;
     }
+    public void  reloadTree() {
+        myModel.reload();
+        for(int i = 0; i < myTree.getRowCount(); i++) {
+            myTree.expandRow(i);
+        }
+    }
 
     public void setSplitPaneSaver(JSplitPane splitPaneSaver) {
         this.splitPaneSaver = splitPaneSaver;

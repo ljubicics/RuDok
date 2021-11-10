@@ -75,7 +75,7 @@ public class AddNewPresentationDialog extends JDialog {
         btnAdd.addActionListener(e -> {
             String autor = autorTF.getText();
             String naziv = nazivTF.getText();
-            ((Project)node).addChild(new Presentation(naziv, (Project)node, autor, url));
+            ((Project)node).add(new Presentation(naziv, (Project)node, autor, url));
 
            dispose();
         });

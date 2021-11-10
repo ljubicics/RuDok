@@ -2,6 +2,7 @@ package controller;
 
 import model.nodes.RuNode;
 import model.nodes.RuNodeComposite;
+import model.workspace.Workspace;
 import view.MainFrame;
 import view.tree.model.MyTreeNode;
 
@@ -22,8 +23,12 @@ public class DeleteAction extends AbstractRudokAction{
         System.out.println("delete");
         MyTreeNode o = (MyTreeNode) MainFrame.getInstance().getMyTree().getLastSelectedPathComponent();
         RuNode node = o.getN();
-        RuNodeComposite parent = (RuNodeComposite) node.getParent();
-        parent.removeChild(node);
-        SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
+        if(!(node instanceof Workspace)) {
+            RuNodeComposite parent = (RuNodeComposite) node.getParent();
+            parent.removeChild(node);
+         SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
+        } else {
+            System.out.println("Ne mozete obrisati workspace");
+        }
     }
 }

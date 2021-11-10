@@ -1,6 +1,5 @@
 package model.workspace;
 
-import model.nodes.RuNode;
 import model.nodes.RuNodeComposite;
 
 
@@ -13,11 +12,6 @@ public class Presentation extends RuNodeComposite {
         super(name, parent);
         this.autor = autor;
         this.url = url;
-    }
-
-    public void addChild(RuNode n) {
-        if(n instanceof Slide)
-            super.add(n);
     }
 
     public String getAutor() {

@@ -36,6 +36,9 @@ public class PresentationView extends JPanel implements ISubscriber {
         for(RuNode ruNode : children) {
             SlideView slideView = new SlideView((Slide) ruNode, url);
             boxPanel.add(slideView);
+            boxPanel.add((Box.createRigidArea(new Dimension(0, 50))));
+            boxPanel.revalidate();
+            boxPanel.repaint();
         }
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(boxPanel);
@@ -77,7 +80,9 @@ public class PresentationView extends JPanel implements ISubscriber {
 
     @Override
     public void update(Object notification) {
-        RuNode n = (Presentation) notification;
+        System.out.println(this.presentation);
+        Presentation p = (Presentation) notification;
+
         JTabbedPane tabbedPane = (JTabbedPane) this.getParent();
         int i;
         for(i = 0; i < tabbedPane.getComponentCount(); i++) {
@@ -85,15 +90,31 @@ public class PresentationView extends JPanel implements ISubscriber {
                 break;
             }
         }
-        tabbedPane.setTitleAt(i, n.getName());
+        tabbedPane.setTitleAt(i, p.getName());
 
-        MyTreeNode mtn = new MyTreeNode(n);
-        if(mtn.getChildCount() > boxPanel.getComponentCount()) {
-            RuNode rn = children.get(children.size()-1);
-            SlideView slideView = new SlideView((Slide) rn, url);
-            boxPanel.add(slideView);
+        if(presentation.getNodeChildren().size() > 0) {
+            Slide slide = (Slide) presentation.getNodeChildren().get(presentation.getNodeChildren().size()-1);
+                boxPanel.add(new SlideView(slide, presentation.getURL()));
+                boxPanel.add(Box.createRigidArea(new Dimension(0, 50)));
+                boxPanel.revalidate();
+                boxPanel.repaint();
+                this.revalidate();
+                this.repaint();
+        }
+
+        if(!(this.getAutorName().equals(p.getAutor()))) {
+            this.autorName.setText(p.getAutor());
             this.revalidate();
             this.repaint();
         }
+
+       if(p.getParent() == null) {
+            JTabbedPane tabbedPane1 = (JTabbedPane) this.getParent();
+            tabbedPane1.remove(this);
+            tabbedPane1.revalidate();
+            tabbedPane1.repaint();
+        }
+
+
     }
 }

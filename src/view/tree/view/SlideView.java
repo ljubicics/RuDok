@@ -1,22 +1,28 @@
 package view.tree.view;
 
+import model.nodes.RuNode;
+import model.workspace.Presentation;
 import model.workspace.Slide;
+import observer.ISubscriber;
+import view.tree.model.MyTreeNode;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 
-public class SlideView extends JPanel {
+public class SlideView extends JPanel implements ISubscriber {
 
     private Slide slide;
     private String url;
 
     public SlideView(Slide slide, String url) {
        this.slide = slide;
+       this.slide.addSubscriber(this);
        this.url = url;
-       this.setPreferredSize(new Dimension(300,400));
+       this.setSize(400, 300);
+       this.setPreferredSize(new Dimension(400, 300));
+       this.setMaximumSize(new Dimension(400, 300));
 
        this.setVisible(true);
     }
@@ -33,5 +39,10 @@ public class SlideView extends JPanel {
         }
 
         g.drawImage(img,0,0, this.getWidth(),this.getHeight(), null);
+    }
+
+    @Override
+    public void update(Object notification) {
+
     }
 }

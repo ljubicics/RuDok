@@ -6,7 +6,7 @@ import javax.swing.tree.TreeNode;
 
 public class MyTreeModel extends DefaultTreeModel {
 
-    public MyTreeModel(TreeNode root) {
+    public MyTreeModel(MyTreeNode root) {
         super(root);
     }
 

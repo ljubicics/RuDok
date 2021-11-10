@@ -11,8 +11,8 @@ public class MyTree extends JTree {
 
     public MyTree() {
         addTreeSelectionListener(new WorkspaceTreeSelectionListener());
-        setCellEditor(new TreeCellEditor(this, new DefaultTreeCellRenderer()));
         setCellRenderer(new TreeCellRenderer());
+        setCellEditor(new TreeCellEditor(this, new DefaultTreeCellRenderer()));
         setEditable(true);
     }
 }
