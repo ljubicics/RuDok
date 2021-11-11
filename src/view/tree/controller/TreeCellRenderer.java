@@ -25,25 +25,25 @@ public class TreeCellRenderer extends DefaultTreeCellRenderer {
         if(value instanceof MyTreeNode) {
             RuNode n = ((MyTreeNode) value).getN();
             if (n instanceof Workspace) {
-                URL imageURL = getClass().getResource("icons\\workspace.jpg");
+                URL imageURL = getClass().getResource("icons\\workspace.png");
                 Icon icon = null;
                 if (imageURL != null)
                     icon = new ImageIcon(imageURL);
                 setIcon(icon);
             } else if (n instanceof Project) {
-                URL imageURL = getClass().getResource("icons\\workspace.jpg");
+                URL imageURL = getClass().getResource("icons\\project.png");
                 Icon icon = null;
                 if (imageURL != null)
                     icon = new ImageIcon(imageURL);
                 setIcon(icon);
             } else if (n instanceof Presentation) {
-                URL imageURL = getClass().getResource("icons\\workspace.jpg");
+                URL imageURL = getClass().getResource("icons\\presentation.png");
                 Icon icon = null;
                 if (imageURL != null)
                     icon = new ImageIcon(imageURL);
                 setIcon(icon);
             } else if (n instanceof Slide) {
-                URL imageURL = getClass().getResource("icons\\workspace.jpg");
+                URL imageURL = getClass().getResource("icons\\slide.png");
                 Icon icon = null;
                 if (imageURL != null)
                     icon = new ImageIcon(imageURL);

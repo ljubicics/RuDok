@@ -1,6 +1,7 @@
 package controller;
 
 
+import observer.ErrorFactory;
 import view.dialogs.AddNewPresentationDialog;
 import model.nodes.RuNode;
 import model.workspace.Presentation;
@@ -26,13 +27,11 @@ public class NewAction extends AbstractRudokAction{
 
     public void actionPerformed(ActionEvent e) {
         MyTreeNode o = (MyTreeNode) MainFrame.getInstance().getMyTree().getLastSelectedPathComponent();
-        RuNode node = null;
-        if(o != null) {
-            node = o.getN();
-
-        } else {
-            System.out.println("Nije selektovan cvor");
+        if(o == null) {
+            ErrorFactory.getInstance().generateError("Greska pri dodavanju ", "Niste selektovali objekat na koji zelite da dodate", "Izaberite objekat i pokusajte ponovo", 0);
+            return;
         }
+        RuNode node = o.getN();
         if(node instanceof Workspace) {
             System.out.println(((Workspace) node).getNodeChildren().isEmpty());
             Project p = new Project("Projekat " + (((Workspace) node).getNodeChildren().size()+1), (Workspace) node);
@@ -49,5 +48,9 @@ public class NewAction extends AbstractRudokAction{
             ((Presentation) node).add(s);
             SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
        }
+        if(node instanceof Slide) {
+            ErrorFactory.getInstance().generateError("Greska pri dodavanju ", "Ne mozete dodati objekat na slide", "Izaberite drugi objekat i pokusajte ponovo", 0);
+            return;
+        }
     }
 }

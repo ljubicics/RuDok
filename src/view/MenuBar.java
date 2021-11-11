@@ -7,11 +7,10 @@ public class MenuBar extends JMenuBar {
         JMenu mFile = new JMenu("File");
         mFile.add(MainFrame.getInstance().getActionManager().getNewAction());
         mFile.addSeparator();
+        mFile.add(MainFrame.getInstance().getActionManager().getEditAction());
 
         JMenu mHelp = new JMenu("Help");
         mHelp.add(MainFrame.getInstance().getActionManager().getInfoAction());
-        mHelp.addSeparator();
-        mHelp.add(MainFrame.getInstance().getActionManager().getEditAction());
         this.add(mFile);
         this.add(mHelp);
     }

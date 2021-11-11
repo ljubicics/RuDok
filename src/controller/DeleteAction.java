@@ -3,6 +3,7 @@ package controller;
 import model.nodes.RuNode;
 import model.nodes.RuNodeComposite;
 import model.workspace.Workspace;
+import observer.ErrorFactory;
 import view.MainFrame;
 import view.tree.model.MyTreeNode;
 
@@ -22,13 +23,18 @@ public class DeleteAction extends AbstractRudokAction{
     public void actionPerformed(ActionEvent e) {
         System.out.println("delete");
         MyTreeNode o = (MyTreeNode) MainFrame.getInstance().getMyTree().getLastSelectedPathComponent();
+        if(o == null) {
+            ErrorFactory.getInstance().generateError("Greska pri dodavanju ", "Niste selektovali objekat na koji zelite da obrisete", "Izaberite objekat i pokusajte ponovo", 1);
+            return;
+        }
         RuNode node = o.getN();
         if(!(node instanceof Workspace)) {
             RuNodeComposite parent = (RuNodeComposite) node.getParent();
             parent.removeChild(node);
          SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
         } else {
-            System.out.println("Ne mozete obrisati workspace");
+            ErrorFactory.getInstance().generateError("Greska pri brisanju ", "Workspace se ne moze obrisati", "Izaberite drugi objekat", 0);
+            return;
         }
     }
 }

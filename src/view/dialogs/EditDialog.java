@@ -2,6 +2,7 @@ package view.dialogs;
 
 import model.nodes.RuNode;
 import model.workspace.Presentation;
+import observer.ErrorFactory;
 import view.MainFrame;
 import view.tree.model.MyTreeNode;
 
@@ -75,6 +76,14 @@ public class EditDialog extends JDialog {
         });
 
         editBtn.addActionListener(e -> {
+            if(autorTF.getText().isEmpty()) {
+                ErrorFactory.getInstance().generateError("Greska pri dodavanju ", "Niste dodali autora prezentaciji", "Dodajte autora i pokusajte ponovo", 0);
+                return;
+            }
+            if(slikaTF.getText().isEmpty()) {
+                ErrorFactory.getInstance().generateError("Greska pri dodavanju ", "Niste izabrali sliku prezentacije", "Izaberite sliku i pokusajte ponovo", 0);
+                return;
+            }
             ((Presentation)rn).setAutor(autorTF.getText());
             ((Presentation)rn).setURL(url);
             dispose();

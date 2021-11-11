@@ -3,6 +3,8 @@ package view.dialogs;
 import model.nodes.RuNode;
 import model.workspace.Presentation;
 import model.workspace.Project;
+import observer.ErrorFactory;
+import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -73,10 +75,22 @@ public class AddNewPresentationDialog extends JDialog {
         });
 
         btnAdd.addActionListener(e -> {
+            if(autorTF.getText().isEmpty()) {
+                ErrorFactory.getInstance().generateError("Greska pri dodavanju ", "Niste dodali autora prezentaciji", "Dodajte autora i pokusajte ponovo", 0);
+                return;
+            }
+            if(nazivTF.getText().isEmpty()) {
+                ErrorFactory.getInstance().generateError("Greska pri dodavanju ", "Niste dodali naziv prezentaciji", "Dodajte naziv i pokusajte ponovo", 0);
+                return;
+            }
+            if(slikaTF.getText().isEmpty()) {
+                ErrorFactory.getInstance().generateError("Greska pri dodavanju ", "Niste izabrali sliku prezentacije", "Izaberite sliku i pokusajte ponovo", 0);
+                return;
+            }
             String autor = autorTF.getText();
             String naziv = nazivTF.getText();
             ((Project)node).add(new Presentation(naziv, (Project)node, autor, url));
-
+            MainFrame.getInstance().reloadTree();
            dispose();
         });
 

@@ -3,6 +3,8 @@ package view;
 import controller.ActionManager;
 import controller.DoubleClickProjectController;
 import model.workspace.Workspace;
+import observer.ISubscriber;
+import observer.MyError;
 import view.tree.model.MyTreeModel;
 import view.tree.model.MyTreeNode;
 import view.tree.view.MyTree;
@@ -10,7 +12,7 @@ import view.tree.view.MyTree;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements ISubscriber {
     private static MainFrame instance = null;
     private ActionManager actionManager;
     private MenuBar menuBar;
@@ -109,5 +111,18 @@ public class MainFrame extends JFrame {
 
     public void setSplitPaneSaver(JSplitPane splitPaneSaver) {
         this.splitPaneSaver = splitPaneSaver;
+    }
+
+    public void reloadTree() {
+        myModel.reload();
+        for(int i = 0; i < myTree.getRowCount(); i++) {
+            myTree.expandRow(i);
+        }
+    }
+
+    @Override
+    public void update(Object notification) {
+        MyError myError = (MyError) notification;
+        JOptionPane.showMessageDialog(new JDialog(this), myError.getText() + "\n" + myError.getSolution(), myError.getTitle(), myError.getType());
     }
 }

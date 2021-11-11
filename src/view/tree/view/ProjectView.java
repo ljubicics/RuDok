@@ -100,7 +100,6 @@ public class ProjectView extends JPanel implements ISubscriber {
 
         if(n.getNodeChildren().size() > 0) {
             if(tabbedPane.getTabCount() == 0) {
-                System.out.println("Usao u petlju");
                 RuNode node = ((Project) notification).getNodeChildren().get(((Project) notification).getNodeChildren().size() - 1);
                 Presentation p = (Presentation) node;
                 PresentationView pv = new PresentationView(p);
