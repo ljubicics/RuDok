@@ -13,23 +13,28 @@ import java.util.List;
 
 public class PresentationView extends JPanel implements ISubscriber {
 
-    private JLabel autorName;
+    private String autorName;
+    public JLabel autorLbl;
     private JPanel boxPanel;
     private Presentation presentation;
     private List<RuNode> children;
     private String url;
+    private String presentationName;
 
     public PresentationView(Presentation presentation) {
         this.presentation = presentation;
         this.presentation.addSubscriber(this);
-        children = new ArrayList<>();
         this.setLayout(new BorderLayout());
-        this.autorName = new JLabel();
-        autorName.setText(presentation.getAutor());
-        autorName.setHorizontalAlignment(JLabel.CENTER);
-        this.add(autorName, BorderLayout.NORTH);
+        this.autorLbl = new JLabel();
+        autorName = presentation.getAutor();
+        autorLbl.setText(autorName);
+        autorLbl.setHorizontalAlignment(JLabel.CENTER);
+        autorLbl.setPreferredSize(new Dimension(0, 30));
+        this.add(autorLbl, BorderLayout.NORTH);
+        children = new ArrayList<>();
         children.addAll(presentation.getNodeChildren());
         url = presentation.getURL();
+        presentationName = presentation.getName();
         boxPanel = new JPanel();
         boxPanel.setLayout(new BoxLayout(boxPanel, BoxLayout.Y_AXIS));
 
@@ -46,11 +51,11 @@ public class PresentationView extends JPanel implements ISubscriber {
         this.setVisible(true);
     }
 
-    public JLabel getAutorName() {
+    public String getAutorName() {
         return autorName;
     }
 
-    public void setAutorName(JLabel autorName) {
+    public void setAutorName(String autorName) {
         this.autorName = autorName;
     }
 
@@ -80,41 +85,71 @@ public class PresentationView extends JPanel implements ISubscriber {
 
     @Override
     public void update(Object notification) {
-        System.out.println(this.presentation);
         Presentation p = (Presentation) notification;
 
-        JTabbedPane tabbedPane = (JTabbedPane) this.getParent();
-        int i;
-        for(i = 0; i < tabbedPane.getComponentCount(); i++) {
-            if(tabbedPane.getComponentAt(i).equals(this)) {
-                break;
-            }
-        }
-        tabbedPane.setTitleAt(i, p.getName());
-
-        if(presentation.getNodeChildren().size() > 0) {
-            Slide slide = (Slide) presentation.getNodeChildren().get(presentation.getNodeChildren().size()-1);
+        if(boxPanel.getComponentCount() == 0) {
+            Slide slide = (Slide) presentation.getNodeChildren().get(presentation.getNodeChildren().size() - 1);
                 boxPanel.add(new SlideView(slide, presentation.getURL()));
                 boxPanel.add(Box.createRigidArea(new Dimension(0, 50)));
                 boxPanel.revalidate();
                 boxPanel.repaint();
                 this.revalidate();
                 this.repaint();
+                return;
         }
 
-        if(!(this.getAutorName().equals(p.getAutor()))) {
-            this.autorName.setText(p.getAutor());
-            this.revalidate();
-            this.repaint();
-        }
-
-       if(p.getParent() == null) {
+        if(p.getParent() == null) {
             JTabbedPane tabbedPane1 = (JTabbedPane) this.getParent();
             tabbedPane1.remove(this);
             tabbedPane1.revalidate();
             tabbedPane1.repaint();
+            return;
         }
 
+        if(!(this.presentationName.equals(p.getName()))) {
+            JTabbedPane tabbedPane = (JTabbedPane) this.getParent();
+            for (int i = 0; i < tabbedPane.getComponentCount(); i++) {
+                if(tabbedPane.getTitleAt(i).equals(this.presentationName)) {
+                    tabbedPane.setTitleAt(i, p.getName());
+                    tabbedPane.revalidate();
+                    tabbedPane.repaint();
+                }
+            }
+            return;
+        }
 
+        if(!(this.getUrl().equals(p.getURL()))) {
+            this.url = p.getURL();
+            for(int i = 0; i < boxPanel.getComponentCount(); i++) {
+                if(boxPanel.getComponent(i) instanceof SlideView) {
+                    ((SlideView)boxPanel.getComponent(i)).setUrl(this.url);
+                    ((SlideView)boxPanel.getComponent(i)).revalidate();
+                    ((SlideView)boxPanel.getComponent(i)).repaint();
+                }
+            }
+            boxPanel.revalidate();
+            boxPanel.repaint();
+            this.revalidate();
+            this.repaint();
+            return;
+        }
+
+        if(!(this.getAutorName().equals(p.getAutor()))) {
+            this.autorLbl.setText(p.getAutor());
+            this.revalidate();
+            this.repaint();
+            return;
+        }
+
+        if(presentation.getNodeChildren().size() > 0) {
+            Slide slide = (Slide) presentation.getNodeChildren().get(presentation.getNodeChildren().size() - 1);
+                boxPanel.add(new SlideView(slide, presentation.getURL()));
+                boxPanel.add(Box.createRigidArea(new Dimension(0, 50)));
+                boxPanel.revalidate();
+                boxPanel.repaint();
+                this.revalidate();
+                this.repaint();
+                return;
+        }
     }
 }

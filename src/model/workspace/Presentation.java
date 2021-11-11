@@ -20,6 +20,7 @@ public class Presentation extends RuNodeComposite {
 
     public void setAutor(String autor) {
         this.autor = autor;
+        notifySubscribers(this);
     }
 
     public String getURL() {
@@ -28,5 +29,6 @@ public class Presentation extends RuNodeComposite {
 
     public void setURL(String url) {
         this.url = url;
+        notifySubscribers(this);
     }
 }

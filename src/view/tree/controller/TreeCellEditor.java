@@ -47,12 +47,16 @@ public class TreeCellEditor extends DefaultTreeCellEditor implements ActionListe
 
         if (n instanceof Project) {
             n.setName(e.getActionCommand());
+            this.cancelCellEditing();
         } else if (n instanceof Presentation) {
             n.setName(e.getActionCommand());
+            this.cancelCellEditing();
         } else if (n instanceof Slide) {
             n.setName(e.getActionCommand());
+            this.cancelCellEditing();
         } else {
             n.setName(e.getActionCommand());
+            this.cancelCellEditing();
         }
     }
 }

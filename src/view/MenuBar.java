@@ -11,8 +11,7 @@ public class MenuBar extends JMenuBar {
         JMenu mHelp = new JMenu("Help");
         mHelp.add(MainFrame.getInstance().getActionManager().getInfoAction());
         mHelp.addSeparator();
-        JMenuItem miEdit = new JMenuItem("Edit");
-        mHelp.add(miEdit);
+        mHelp.add(MainFrame.getInstance().getActionManager().getEditAction());
         this.add(mFile);
         this.add(mHelp);
     }

@@ -16,20 +16,22 @@ import java.util.List;
 
 public class ProjectView extends JPanel implements ISubscriber {
 
-    private JLabel projectName;
+    private String projectName;
     private Project project;
     private List<RuNode> children;
     private JTabbedPane tabbedPane;
     private JPanel panelLbl;
+    JLabel nameLbl;
 
     public ProjectView(Project project) {
         this.project = project;
-        this.projectName = new JLabel();
+        nameLbl = new JLabel();
+        this.projectName = project.getName();
         this.tabbedPane = new JTabbedPane();
-        projectName.setText(project.getName());
+        nameLbl.setText(projectName);
         this.setLayout(new BorderLayout());
         panelLbl = new JPanel();
-        panelLbl.add(projectName);
+        panelLbl.add(nameLbl);
         this.add(panelLbl, BorderLayout.NORTH);
         this.project.addSubscriber(this);
         children = new ArrayList<>();
@@ -44,11 +46,11 @@ public class ProjectView extends JPanel implements ISubscriber {
         this.setVisible(true);
     }
 
-    public JLabel getProjectName() {
+    public String getProjectName() {
         return projectName;
     }
 
-    public void setProjectName(JLabel projectName) {
+    public void setProjectName(String projectName) {
         this.projectName = projectName;
     }
 
@@ -112,14 +114,12 @@ public class ProjectView extends JPanel implements ISubscriber {
         if(n.getNodeChildren().size() > tabbedPane.getTabCount()){
             Presentation p = (Presentation) n.getNodeChildren().get(n.getNodeChildren().size()-1);
             tabbedPane.addTab(p.getName(), new PresentationView(p));
-        }
-
-        if(!(projectName.equals(n.getName()))) {
-            this.projectName.setText(n.getName());
             return;
         }
 
-
-
+        if(!(projectName.equals(n.getName()))) {
+            this.nameLbl.setText(n.getName());
+            return;
+        }
     }
 }

@@ -17,7 +17,7 @@ public class WorkspaceTreeSelectionListener implements TreeSelectionListener {
         TreePath path = e.getPath();
         for(int i = 0; i < path.getPathCount(); i++) {
             if(path.getPathComponent(i) instanceof Workspace) {
-                Workspace w = (Workspace) path.getPathComponent(i);
+                 Workspace w = (Workspace) path.getPathComponent(i);
 
                 System.out.println("Selektovan dijagram" + w);
             }

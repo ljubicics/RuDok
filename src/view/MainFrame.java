@@ -2,9 +2,7 @@ package view;
 
 import controller.ActionManager;
 import controller.DoubleClickProjectController;
-import model.workspace.Project;
 import model.workspace.Workspace;
-import view.tree.controller.TreeCellRenderer;
 import view.tree.model.MyTreeModel;
 import view.tree.model.MyTreeNode;
 import view.tree.view.MyTree;
@@ -107,12 +105,6 @@ public class MainFrame extends JFrame {
 
     public JSplitPane getSplitPaneSaver() {
         return splitPaneSaver;
-    }
-    public void  reloadTree() {
-        myModel.reload();
-        for(int i = 0; i < myTree.getRowCount(); i++) {
-            myTree.expandRow(i);
-        }
     }
 
     public void setSplitPaneSaver(JSplitPane splitPaneSaver) {

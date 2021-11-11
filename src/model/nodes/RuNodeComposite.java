@@ -12,7 +12,7 @@ public class RuNodeComposite extends RuNode{
     }
     public void add(RuNode n) {
         this.nodeChildren.add(n);
-        this.notifySubscribers(this);
+        notifySubscribers(this);
     }
 
     public void removeChild(RuNode n) {
