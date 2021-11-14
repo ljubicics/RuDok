@@ -4,7 +4,6 @@ import model.nodes.RuNode;
 import model.workspace.Presentation;
 import model.workspace.Slide;
 import observer.ISubscriber;
-import view.tree.model.MyTreeNode;
 
 import javax.swing.*;
 import java.awt.*;
@@ -96,7 +95,10 @@ public class PresentationView extends JPanel implements ISubscriber {
         }
 
         if(!(this.presentationName.equals(p.getName()))) {
+            System.out.println("Ulazi u izmenu imena");
             JTabbedPane tabbedPane = (JTabbedPane) this.getParent();
+            System.out.println(p.getNodeChildren().size());
+            System.out.println(boxPanel.getComponentCount());
             for (int i = 0; i < tabbedPane.getComponentCount(); i++) {
                 if(tabbedPane.getTitleAt(i).equals(this.presentationName)) {
                     tabbedPane.setTitleAt(i, p.getName());
@@ -104,11 +106,11 @@ public class PresentationView extends JPanel implements ISubscriber {
                     tabbedPane.repaint();
                 }
             }
+            this.presentationName = p.getName();
             return;
         }
 
         if(!(this.getUrl().equals(p.getURL()))) {
-            System.out.println("Udje ovde");
             this.url = p.getURL();
             for(int i = 0; i < boxPanel.getComponentCount(); i++) {
                 if(boxPanel.getComponent(i) instanceof SlideView) {
@@ -130,28 +132,28 @@ public class PresentationView extends JPanel implements ISubscriber {
             this.repaint();
             return;
         }
-        if (presentation.getNodeChildren().size() > 0) {
-            Slide mySlide = (Slide) presentation.getNodeChildren().get(presentation.getNodeChildren().size()-1);
+        if (p.getNodeChildren().size() > 0) {
+            Slide mySlide = (Slide) p.getNodeChildren().get(p.getNodeChildren().size() - 1);
             if (boxPanel.getComponentCount() == 0) {
                 boxPanel.add(new SlideView(mySlide, p.getURL()));
-                boxPanel.add(Box.createRigidArea(new Dimension(0, 50)));
+               boxPanel.add(Box.createRigidArea(new Dimension(0, 50)));
                 boxPanel.revalidate();
                 boxPanel.repaint();
                 this.revalidate();
                 this.repaint();
 
             }
-        }
-        Slide mySlide = (Slide) presentation.getNodeChildren().get(presentation.getNodeChildren().size()-1);
-        SlideView lastSlideView = (SlideView) boxPanel.getComponent(boxPanel.getComponentCount() - 2);
-        Slide lastSlide = lastSlideView.getSlide();
-        if (!(lastSlide.equals(mySlide))) {
-            boxPanel.add(new SlideView(mySlide, presentation.getURL()));
-            boxPanel.add(Box.createRigidArea(new Dimension(0, 50)));
-            boxPanel.revalidate();
-            boxPanel.repaint();
-            this.revalidate();
-            this.repaint();
+            Slide mySlide2 = (Slide) p.getNodeChildren().get(p.getNodeChildren().size()-1);
+            SlideView lastSlideView = (SlideView) boxPanel.getComponent(boxPanel.getComponentCount() - 2);
+            Slide lastSlide = lastSlideView.getSlide();
+            if (!(lastSlide.equals(mySlide2))) {
+                boxPanel.add(new SlideView(mySlide2, p.getURL()));
+               boxPanel.add(Box.createRigidArea(new Dimension(0, 50)));
+                boxPanel.revalidate();
+                boxPanel.repaint();
+                this.revalidate();
+                this.repaint();
+            }
         }
 
     }

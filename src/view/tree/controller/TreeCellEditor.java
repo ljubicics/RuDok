@@ -4,7 +4,6 @@ import model.nodes.RuNode;
 import model.workspace.Presentation;
 import model.workspace.Project;
 import model.workspace.Slide;
-import model.workspace.Workspace;
 import view.tree.model.MyTreeNode;
 
 import javax.swing.*;
