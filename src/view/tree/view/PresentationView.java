@@ -128,6 +128,7 @@ public class PresentationView extends JPanel implements ISubscriber {
 
         if(!(this.getAutorName().equals(p.getAutor()))) {
             this.autorLbl.setText(p.getAutor());
+            this.autorName = p.getAutor();
             this.revalidate();
             this.repaint();
             return;
