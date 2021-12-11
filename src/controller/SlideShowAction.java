@@ -30,5 +30,6 @@ public class SlideShowAction extends AbstractRudokAction{
                     presentation.setPresentationState(new ViewState());
                 }
             }
+
     }
 }

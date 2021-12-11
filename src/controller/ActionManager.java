@@ -17,6 +17,7 @@ public class ActionManager {
         deleteAction = new DeleteAction();
         editAction = new EditAction();
         slideShowAction = new SlideShowAction();
+
     }
 
     public InfoAction getInfoAction() {

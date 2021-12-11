@@ -121,5 +121,6 @@ public class ProjectView extends JPanel implements ISubscriber {
             this.nameLbl.setText(n.getName());
             return;
         }
+
     }
 }

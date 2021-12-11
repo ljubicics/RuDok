@@ -154,4 +154,5 @@ public class SlideShowView extends JPanel {
     public void setMaxCard(int maxCard) {
         this.maxCard = maxCard;
     }
+
 }

@@ -237,6 +237,7 @@ public class PresentationView extends JPanel implements ISubscriber {
                 this.repaint();
                 return;
             }
+
         }
 
     }

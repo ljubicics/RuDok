@@ -68,5 +68,6 @@ public class SlideView extends JPanel implements ISubscriber {
             panel.revalidate();
             panel.repaint();
         }
+
     }
 }
