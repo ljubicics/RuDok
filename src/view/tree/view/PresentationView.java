@@ -19,6 +19,7 @@ public class PresentationView extends JPanel implements ISubscriber {
     private List<RuNode> children;
     private String url;
     private String presentationName;
+    private JPanel navigatorPanel;
 
     public PresentationView(Presentation presentation) {
         this.presentation = presentation;
@@ -37,16 +38,36 @@ public class PresentationView extends JPanel implements ISubscriber {
         boxPanel = new JPanel();
         boxPanel.setLayout(new BoxLayout(boxPanel, BoxLayout.Y_AXIS));
 
+        navigatorPanel = new JPanel();
+        navigatorPanel.setLayout(new BoxLayout(navigatorPanel, BoxLayout.Y_AXIS));
+
         for(RuNode ruNode : children) {
             SlideView slideView = new SlideView((Slide) ruNode, url);
             boxPanel.add(slideView);
             boxPanel.add((Box.createRigidArea(new Dimension(0, 50))));
-            boxPanel.revalidate();
-            boxPanel.repaint();
         }
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setViewportView(boxPanel);
-        this.add(scrollPane, BorderLayout.CENTER);
+
+        for(int i = 0; i < boxPanel.getComponentCount(); i++) {
+            if(boxPanel.getComponent(i) instanceof SlideView) {
+                SlideView slideView = new SlideView(((SlideView) boxPanel.getComponent(i)).getSlide(), url);
+                slideView.setPreferredSize(new Dimension(70, 70));
+                slideView.setMinimumSize(new Dimension(70, 70));
+                slideView.setMaximumSize(new Dimension(70, 70));
+                navigatorPanel.add(slideView);
+                navigatorPanel.add((Box.createRigidArea(new Dimension(0, 10))));
+                navigatorPanel.revalidate();
+                navigatorPanel.repaint();
+            }
+        }
+
+        JScrollPane scrollPaneRight = new JScrollPane();
+        JScrollPane scrollPaneLeft = new JScrollPane();
+        scrollPaneLeft.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneLeft.setPreferredSize(new Dimension(150, 0));
+        scrollPaneRight.setViewportView(boxPanel);
+        scrollPaneLeft.setViewportView(navigatorPanel);
+        this.add(scrollPaneRight, BorderLayout.CENTER);
+        this.add(scrollPaneLeft, BorderLayout.WEST);
         this.setVisible(true);
     }
 
@@ -82,6 +103,38 @@ public class PresentationView extends JPanel implements ISubscriber {
         this.presentation = presentation;
     }
 
+    public JLabel getAutorLbl() {
+        return autorLbl;
+    }
+
+    public void setAutorLbl(JLabel autorLbl) {
+        this.autorLbl = autorLbl;
+    }
+
+    public JPanel getBoxPanel() {
+        return boxPanel;
+    }
+
+    public void setBoxPanel(JPanel boxPanel) {
+        this.boxPanel = boxPanel;
+    }
+
+    public String getPresentationName() {
+        return presentationName;
+    }
+
+    public void setPresentationName(String presentationName) {
+        this.presentationName = presentationName;
+    }
+
+    public JPanel getNavigatorPanel() {
+        return navigatorPanel;
+    }
+
+    public void setNavigatorPanel(JPanel navigatorPanel) {
+        this.navigatorPanel = navigatorPanel;
+    }
+
     @Override
     public void update(Object notification) {
         Presentation p = (Presentation) notification;
@@ -95,7 +148,6 @@ public class PresentationView extends JPanel implements ISubscriber {
         }
 
         if(!(this.presentationName.equals(p.getName()))) {
-            System.out.println("Ulazi u izmenu imena");
             JTabbedPane tabbedPane = (JTabbedPane) this.getParent();
             System.out.println(p.getNodeChildren().size());
             System.out.println(boxPanel.getComponentCount());
@@ -118,6 +170,12 @@ public class PresentationView extends JPanel implements ISubscriber {
                     (boxPanel.getComponent(i)).revalidate();
                     (boxPanel.getComponent(i)).repaint();
                 }
+
+                if(navigatorPanel.getComponent(i) instanceof SlideView) {
+                    ((SlideView)navigatorPanel.getComponent(i)).setUrl(this.url);
+                    (navigatorPanel.getComponent(i)).revalidate();
+                    (navigatorPanel.getComponent(i)).repaint();
+                }
             }
             boxPanel.revalidate();
             boxPanel.repaint();
@@ -137,23 +195,47 @@ public class PresentationView extends JPanel implements ISubscriber {
             Slide mySlide = (Slide) p.getNodeChildren().get(p.getNodeChildren().size() - 1);
             if (boxPanel.getComponentCount() == 0) {
                 boxPanel.add(new SlideView(mySlide, p.getURL()));
-               boxPanel.add(Box.createRigidArea(new Dimension(0, 50)));
+                boxPanel.add(Box.createRigidArea(new Dimension(0, 50)));
                 boxPanel.revalidate();
                 boxPanel.repaint();
+                SlideView slideView = new SlideView(mySlide, p.getURL());
+                slideView.setPreferredSize(new Dimension(70, 70));
+                slideView.setMinimumSize(new Dimension(70, 70));
+                slideView.setMaximumSize(new Dimension(70, 70));
+                navigatorPanel.add(slideView);
+                navigatorPanel.add(Box.createVerticalStrut(10));
+                navigatorPanel.revalidate();
+                navigatorPanel.repaint();
                 this.revalidate();
                 this.repaint();
 
             }
             Slide mySlide2 = (Slide) p.getNodeChildren().get(p.getNodeChildren().size()-1);
-            SlideView lastSlideView = (SlideView) boxPanel.getComponent(boxPanel.getComponentCount() - 2);
+            SlideView lastSlideView;
+            try {
+                System.out.println("Uso1");
+                 lastSlideView = (SlideView) boxPanel.getComponent(boxPanel.getComponentCount() - 2);
+            }catch (ClassCastException e){
+                System.err.println("Uso2");
+                lastSlideView = (SlideView)navigatorPanel.getComponent(navigatorPanel.getComponentCount()-2);
+            }
             Slide lastSlide = lastSlideView.getSlide();
             if (!(lastSlide.equals(mySlide2))) {
                 boxPanel.add(new SlideView(mySlide2, p.getURL()));
-               boxPanel.add(Box.createRigidArea(new Dimension(0, 50)));
+                boxPanel.add(Box.createRigidArea(new Dimension(0, 50)));
                 boxPanel.revalidate();
                 boxPanel.repaint();
+                SlideView slideView = new SlideView(mySlide, p.getURL());
+                slideView.setPreferredSize(new Dimension(70, 70));
+                slideView.setMinimumSize(new Dimension(70, 70));
+                slideView.setMaximumSize(new Dimension(70, 70));
+                navigatorPanel.add(slideView);
+                navigatorPanel.add(Box.createVerticalStrut(10));
+                navigatorPanel.revalidate();
+                navigatorPanel.repaint();
                 this.revalidate();
                 this.repaint();
+                return;
             }
         }
 

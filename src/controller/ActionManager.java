@@ -5,6 +5,7 @@ public class ActionManager {
     private NewAction newAction;
     private DeleteAction deleteAction;
     private EditAction editAction;
+    private SlideShowAction slideShowAction;
 
     public ActionManager() {
         initialiseActions();
@@ -15,6 +16,7 @@ public class ActionManager {
         newAction = new NewAction();
         deleteAction = new DeleteAction();
         editAction = new EditAction();
+        slideShowAction = new SlideShowAction();
     }
 
     public InfoAction getInfoAction() {
@@ -47,5 +49,13 @@ public class ActionManager {
 
     public void setEditAction(EditAction editAction) {
         this.editAction = editAction;
+    }
+
+    public SlideShowAction getSlideShowAction() {
+        return slideShowAction;
+    }
+
+    public void setSlideShowAction(SlideShowAction slideShowAction) {
+        this.slideShowAction = slideShowAction;
     }
 }
