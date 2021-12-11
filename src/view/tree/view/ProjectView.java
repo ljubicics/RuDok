@@ -9,6 +9,8 @@ import view.MainFrame;
 import view.tree.model.MyTreeNode;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public class ProjectView extends JPanel implements ISubscriber {
     private JTabbedPane tabbedPane;
     private JPanel panelLbl;
     JLabel nameLbl;
+    private PresentationView test;
 
     public ProjectView(Project project) {
         this.project = project;

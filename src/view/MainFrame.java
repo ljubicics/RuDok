@@ -15,8 +15,8 @@ import java.awt.*;
 public class MainFrame extends JFrame implements ISubscriber {
     private static MainFrame instance = null;
     private ActionManager actionManager;
-    private MenuBar menuBar;
-    private ToolBar toolBar;
+    private JMenuBar menuBar;
+    private JToolBar toolBar;
     private MyTree myTree;
     private MyTreeModel myModel;
     private JSplitPane splitPaneSaver;
@@ -111,6 +111,22 @@ public class MainFrame extends JFrame implements ISubscriber {
 
     public void setSplitPaneSaver(JSplitPane splitPaneSaver) {
         this.splitPaneSaver = splitPaneSaver;
+    }
+
+    public void setMenuBar(JMenuBar menuBar) {
+        this.menuBar = menuBar;
+    }
+
+    public JMenuBar getMyMenuBar() {
+        return menuBar;
+    }
+
+    public void setToolBar(ToolBar toolBar) {
+        this.toolBar = toolBar;
+    }
+
+    public JToolBar getToolBar() {
+        return toolBar;
     }
 
     public void reloadTree() {

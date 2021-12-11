@@ -50,5 +50,6 @@ public class Presentation extends RuNodeComposite {
 
     public void setPresentationState(PresentationState presentationState) {
         this.presentationState = presentationState;
+        this.presentationState.changeState(this);
     }
 }
