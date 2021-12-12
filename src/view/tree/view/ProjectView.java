@@ -96,7 +96,6 @@ public class ProjectView extends JPanel implements ISubscriber {
         if(n.getParent() == null) {
             System.out.println("Usao");
             MainFrame.getInstance().getSplitPaneSaver().setRightComponent(new JPanel());
-            n.removeSubscriber(this);
             MainFrame.getInstance().revalidate();
             MainFrame.getInstance().repaint();
             return;

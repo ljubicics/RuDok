@@ -140,7 +140,10 @@ public class PresentationView extends JPanel implements ISubscriber {
         Presentation p = (Presentation) notification;
 
         if(p.getParent() == null) {
+            System.out.println(this.getParent());
             JTabbedPane tabbedPane1 = (JTabbedPane) this.getParent();
+            if(tabbedPane1 == null)
+                return;
             tabbedPane1.remove(this);
             tabbedPane1.revalidate();
             tabbedPane1.repaint();
@@ -149,8 +152,6 @@ public class PresentationView extends JPanel implements ISubscriber {
 
         if(!(this.presentationName.equals(p.getName()))) {
             JTabbedPane tabbedPane = (JTabbedPane) this.getParent();
-            System.out.println(p.getNodeChildren().size());
-            System.out.println(boxPanel.getComponentCount());
             for (int i = 0; i < tabbedPane.getComponentCount(); i++) {
                 if(tabbedPane.getTitleAt(i).equals(this.presentationName)) {
                     tabbedPane.setTitleAt(i, p.getName());
@@ -213,10 +214,8 @@ public class PresentationView extends JPanel implements ISubscriber {
             Slide mySlide2 = (Slide) p.getNodeChildren().get(p.getNodeChildren().size()-1);
             SlideView lastSlideView;
             try {
-                System.out.println("Uso1");
                  lastSlideView = (SlideView) boxPanel.getComponent(boxPanel.getComponentCount() - 2);
             }catch (ClassCastException e){
-                System.err.println("Uso2");
                 lastSlideView = (SlideView)navigatorPanel.getComponent(navigatorPanel.getComponentCount()-2);
             }
             Slide lastSlide = lastSlideView.getSlide();
@@ -235,7 +234,6 @@ public class PresentationView extends JPanel implements ISubscriber {
                 navigatorPanel.repaint();
                 this.revalidate();
                 this.repaint();
-                return;
             }
 
         }

@@ -12,21 +12,31 @@ public class SlideShowView extends JPanel {
     private JPanel cardPanel = new JPanel();
     private JPanel btnPanel = new JPanel();
     private JButton btnNext = new JButton("Next");
-    private JButton btnPrevous = new JButton("Prevous");
+    private JButton btnPrevious = new JButton("Previous");
     private JButton btnClose = new JButton("Close");
     private JLabel lblPresName = new JLabel();
+    private Presentation presentation;
     int currCard;
     int maxCard;
 
     public SlideShowView(Presentation presentation) {
+        this.presentation = presentation;
         this.lblPresName.setText(presentation.getAutor());
+        lblPresName.setHorizontalAlignment(JLabel.CENTER);
+        lblPresName.setPreferredSize(new Dimension(0, 50));
         this.setLayout(new BorderLayout());
+        JPanel jPanelWest = new JPanel();
+        JPanel jPanelEast = new JPanel();
+        jPanelWest.setPreferredSize(new Dimension(150, 0));
+        jPanelEast.setPreferredSize(new Dimension(150, 0));
+        this.add(jPanelWest, BorderLayout.WEST);
+        this.add(jPanelEast, BorderLayout.EAST);
         this.add(lblPresName, BorderLayout.NORTH);
+
 
         cardPanel.setLayout(new CardLayout());
         presentationView = new PresentationView(presentation);
         this.currCard = 0;
-        this.maxCard = presentation.getNodeChildren().size();
 
         for(Component c : presentationView.getBoxPanel().getComponents()) {
             if(c instanceof SlideView) {
@@ -34,21 +44,7 @@ public class SlideShowView extends JPanel {
             }
         }
 
-        this.add(cardPanel, BorderLayout.CENTER);
-        btnPrevous.addActionListener(e -> {
-            CardLayout cardLayout = (CardLayout) cardPanel.getLayout();
-            cardLayout.previous(cardPanel);
-            currCard--;
-            cardPanel.revalidate();
-            cardPanel.repaint();
-
-            if(currCard == 0) {
-                btnPrevous.setEnabled(false);
-            }
-            if(currCard == maxCard - 1) {
-                btnNext.setEnabled(false);
-            }
-        });
+        btnPrevious.setEnabled(false);
 
         btnNext.addActionListener(e -> {
             CardLayout cardLayout = (CardLayout) cardPanel.getLayout();
@@ -57,12 +53,26 @@ public class SlideShowView extends JPanel {
             cardPanel.revalidate();
             cardPanel.repaint();
 
-            if(currCard == maxCard) {
+            if(currCard == presentation.getNodeChildren().size()) {
                 btnNext.setEnabled(false);
             }
             if(currCard == 1) {
-                btnPrevous.setEnabled(true);
+                btnPrevious.setEnabled(true);
             }
+        });
+
+        this.add(cardPanel, BorderLayout.CENTER);
+        btnPrevious.addActionListener(e -> {
+            CardLayout cardLayout = (CardLayout) cardPanel.getLayout();
+            cardLayout.previous(cardPanel);
+            currCard--;
+            cardPanel.revalidate();
+            cardPanel.repaint();
+
+            if(currCard == 0) {
+                btnPrevious.setEnabled(false);
+            }
+            btnNext.setEnabled(true);
         });
 
         btnClose.addActionListener(e -> {
@@ -77,7 +87,7 @@ public class SlideShowView extends JPanel {
             presentation.removeSubscriber(presentationView);
         });
 
-        btnPanel.add(btnPrevous);
+        btnPanel.add(btnPrevious);
         btnPanel.add(btnNext);
         btnPanel.add(btnClose);
         this.add(btnPanel, BorderLayout.SOUTH);
@@ -115,12 +125,12 @@ public class SlideShowView extends JPanel {
         this.btnNext = btnNext;
     }
 
-    public JButton getBtnPrevous() {
-        return btnPrevous;
+    public JButton getBtnPrevious() {
+        return btnPrevious;
     }
 
-    public void setBtnPrevous(JButton btnPrevous) {
-        this.btnPrevous = btnPrevous;
+    public void setBtnPrevious(JButton btnPrevious) {
+        this.btnPrevious = btnPrevious;
     }
 
     public JButton getBtnClose() {
@@ -155,4 +165,11 @@ public class SlideShowView extends JPanel {
         this.maxCard = maxCard;
     }
 
+    public Presentation getPresentation() {
+        return presentation;
+    }
+
+    public void setPresentation(Presentation presentation) {
+        this.presentation = presentation;
+    }
 }

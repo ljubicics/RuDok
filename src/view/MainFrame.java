@@ -17,6 +17,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     private ActionManager actionManager;
     private JMenuBar menuBar;
     private JToolBar toolBar;
+    private JToolBar slideShowToolBar;
     private MyTree myTree;
     private MyTreeModel myModel;
     private JSplitPane splitPaneSaver;
@@ -46,6 +47,7 @@ public class MainFrame extends JFrame implements ISubscriber {
         setJMenuBar(menuBar);
         toolBar = new ToolBar();
         add(toolBar, BorderLayout.NORTH);
+        slideShowToolBar = new SlideShowToolBar();
 
         JScrollPane scrollPane = new JScrollPane(myTree ,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         JPanel panelRight = new JPanel();
@@ -134,6 +136,14 @@ public class MainFrame extends JFrame implements ISubscriber {
         for(int i = 0; i < myTree.getRowCount(); i++) {
             myTree.expandRow(i);
         }
+    }
+
+    public JToolBar getSlideShowToolBar() {
+        return slideShowToolBar;
+    }
+
+    public void setSlideShowToolBar(JToolBar slideShowToolBar) {
+        this.slideShowToolBar = slideShowToolBar;
     }
 
     @Override
