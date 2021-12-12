@@ -4,6 +4,7 @@ import model.nodes.RuNode;
 import model.workspace.Presentation;
 import model.workspace.Slide;
 import observer.ISubscriber;
+import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -142,8 +143,12 @@ public class PresentationView extends JPanel implements ISubscriber {
         if(p.getParent() == null) {
             System.out.println(this.getParent());
             JTabbedPane tabbedPane1 = (JTabbedPane) this.getParent();
-            if(tabbedPane1 == null)
+            if(tabbedPane1 == null) {
+                ((ProjectView)MainFrame.getInstance().getSplitPaneSaver().getRightComponent()).getTabbedPane().remove(((ProjectView)MainFrame.getInstance().getSplitPaneSaver().getRightComponent()).getTabbedPane().getComponentAt(0));
+                ((ProjectView)MainFrame.getInstance().getSplitPaneSaver().getRightComponent()).getTabbedPane().revalidate();
+                ((ProjectView)MainFrame.getInstance().getSplitPaneSaver().getRightComponent()).getTabbedPane().repaint();
                 return;
+            }
             tabbedPane1.remove(this);
             tabbedPane1.revalidate();
             tabbedPane1.repaint();
