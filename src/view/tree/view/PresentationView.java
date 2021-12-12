@@ -151,16 +151,18 @@ public class PresentationView extends JPanel implements ISubscriber {
         }
 
         if(!(this.presentationName.equals(p.getName()))) {
-            JTabbedPane tabbedPane = (JTabbedPane) this.getParent();
-            for (int i = 0; i < tabbedPane.getComponentCount(); i++) {
-                if(tabbedPane.getTitleAt(i).equals(this.presentationName)) {
-                    tabbedPane.setTitleAt(i, p.getName());
-                    tabbedPane.revalidate();
-                    tabbedPane.repaint();
+            if(this.getParent() instanceof JTabbedPane) {
+                JTabbedPane tabbedPane = (JTabbedPane) this.getParent();
+                for (int i = 0; i < tabbedPane.getComponentCount(); i++) {
+                    if (tabbedPane.getTitleAt(i).equals(this.presentationName)) {
+                        tabbedPane.setTitleAt(i, p.getName());
+                        tabbedPane.revalidate();
+                        tabbedPane.repaint();
+                    }
                 }
+                this.presentationName = p.getName();
+                return;
             }
-            this.presentationName = p.getName();
-            return;
         }
 
         if(!(this.getUrl().equals(p.getURL()))) {

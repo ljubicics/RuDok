@@ -1,6 +1,8 @@
 package view.tree.view;
 
 import model.nodes.RuNode;
+import model.state.EditState;
+import model.state.ViewState;
 import model.workspace.Presentation;
 import model.workspace.Project;
 import model.workspace.Workspace;
@@ -24,7 +26,6 @@ public class ProjectView extends JPanel implements ISubscriber {
     private JTabbedPane tabbedPane;
     private JPanel panelLbl;
     JLabel nameLbl;
-    private PresentationView test;
 
     public ProjectView(Project project) {
         this.project = project;
@@ -44,6 +45,19 @@ public class ProjectView extends JPanel implements ISubscriber {
          PresentationView presentationView = new PresentationView((Presentation) ruNode);
          tabbedPane.addTab(ruNode.getName(), presentationView);
         }
+
+        tabbedPane.addChangeListener(e -> {
+            if(tabbedPane.getSelectedComponent() instanceof PresentationView) {
+                System.out.println("Uso12345");
+            PresentationView presentationView = (PresentationView) tabbedPane.getSelectedComponent();
+            Presentation presentation = presentationView.getPresentation();
+            presentation.setPresentationState(new EditState());
+            } else {
+                SlideShowView slideShowView = (SlideShowView) tabbedPane.getSelectedComponent();
+                Presentation presentation = slideShowView.getPresentation();
+                presentation.setPresentationState(new ViewState());
+            }
+        });
 
         this.add(tabbedPane, BorderLayout.CENTER);
         this.setVisible(true);
