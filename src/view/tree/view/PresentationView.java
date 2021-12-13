@@ -5,6 +5,7 @@ import model.workspace.Presentation;
 import model.workspace.Slide;
 import observer.ISubscriber;
 import view.MainFrame;
+import view.SlotActionBar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +22,7 @@ public class PresentationView extends JPanel implements ISubscriber {
     private String url;
     private String presentationName;
     private JPanel navigatorPanel;
+    private SlotActionBar slotActionBar;
 
     public PresentationView(Presentation presentation) {
         this.presentation = presentation;
@@ -38,6 +40,7 @@ public class PresentationView extends JPanel implements ISubscriber {
         presentationName = presentation.getName();
         boxPanel = new JPanel();
         boxPanel.setLayout(new BoxLayout(boxPanel, BoxLayout.Y_AXIS));
+        slotActionBar = new SlotActionBar();
 
         navigatorPanel = new JPanel();
         navigatorPanel.setLayout(new BoxLayout(navigatorPanel, BoxLayout.Y_AXIS));
@@ -69,6 +72,7 @@ public class PresentationView extends JPanel implements ISubscriber {
         scrollPaneLeft.setViewportView(navigatorPanel);
         this.add(scrollPaneRight, BorderLayout.CENTER);
         this.add(scrollPaneLeft, BorderLayout.WEST);
+        this.add(slotActionBar, BorderLayout.EAST);
         this.setVisible(true);
     }
 
@@ -144,9 +148,7 @@ public class PresentationView extends JPanel implements ISubscriber {
             System.out.println(this.getParent());
             JTabbedPane tabbedPane1 = (JTabbedPane) this.getParent();
             if(tabbedPane1 == null) {
-                ((ProjectView)MainFrame.getInstance().getSplitPaneSaver().getRightComponent()).getTabbedPane().remove(((ProjectView)MainFrame.getInstance().getSplitPaneSaver().getRightComponent()).getTabbedPane().getComponentAt(0));
-                ((ProjectView)MainFrame.getInstance().getSplitPaneSaver().getRightComponent()).getTabbedPane().revalidate();
-                ((ProjectView)MainFrame.getInstance().getSplitPaneSaver().getRightComponent()).getTabbedPane().repaint();
+                ((ProjectView)MainFrame.getInstance().getSplitPaneSaver().getRightComponent()).getTabbedPane().removeTabAt(0);
                 return;
             }
             tabbedPane1.remove(this);

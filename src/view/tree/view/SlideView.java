@@ -3,6 +3,7 @@ package view.tree.view;
 import model.nodes.RuNode;
 import model.workspace.Presentation;
 import model.workspace.Slide;
+import model.workspace.slotWorkspace.Slot;
 import observer.ISubscriber;
 import view.tree.model.MyTreeNode;
 
@@ -10,11 +11,28 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.util.ArrayList;
 
 public class SlideView extends JPanel implements ISubscriber {
 
     private Slide slide;
     private String url;
+    private ArrayList<SlotView> slotViewArrayList = new ArrayList<>();
+
+    public SlideView(Slide slide, String url) {
+       this.slide = slide;
+       this.slide.addSubscriber(this);
+       this.url = url;
+       this.setSize(400, 300);
+       this.setPreferredSize(new Dimension(400, 300));
+       this.setMaximumSize(new Dimension(400, 300));
+
+       this.setVisible(true);
+
+       for(Slot s : slide.getSlotArrayList()) {
+           this.slotViewArrayList.add(new SlotView(s));
+       }
+    }
 
     public Slide getSlide() {
         return slide;
@@ -32,17 +50,12 @@ public class SlideView extends JPanel implements ISubscriber {
         this.url = url;
     }
 
-    public SlideView(Slide slide, String url) {
-       this.slide = slide;
-       this.slide.addSubscriber(this);
-       this.url = url;
-       this.setSize(400, 300);
-       this.setPreferredSize(new Dimension(400, 300));
-       this.setMaximumSize(new Dimension(400, 300));
+    public ArrayList<SlotView> getSlotViewArrayList() {
+        return slotViewArrayList;
+    }
 
-       this.setVisible(true);
-
-
+    public void setSlotViewArrayList(ArrayList<SlotView> slotViewArrayList) {
+        this.slotViewArrayList = slotViewArrayList;
     }
 
     @Override

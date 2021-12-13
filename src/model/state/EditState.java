@@ -21,11 +21,9 @@ public class EditState implements PresentationState{
             if(MainFrame.getInstance().getSlideShowToolBar() != null) {
                 MainFrame.getInstance().remove(MainFrame.getInstance().getSlideShowToolBar());
             }
-            MainFrame.getInstance().add(MainFrame.getInstance().getToolBar(), BorderLayout.NORTH);
-            MainFrame.getInstance().revalidate();
-            MainFrame.getInstance().repaint();
+                MainFrame.getInstance().add(MainFrame.getInstance().getToolBar(), BorderLayout.NORTH);
+                MainFrame.getInstance().revalidate();
+                MainFrame.getInstance().repaint();
 
     }
-
-
 }

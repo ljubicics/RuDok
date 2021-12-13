@@ -47,7 +47,6 @@ public class MainFrame extends JFrame implements ISubscriber {
         setJMenuBar(menuBar);
         toolBar = new ToolBar();
         add(toolBar, BorderLayout.NORTH);
-        slideShowToolBar = new SlideShowToolBar();
 
         JScrollPane scrollPane = new JScrollPane(myTree ,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         JPanel panelRight = new JPanel();

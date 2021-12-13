@@ -6,6 +6,11 @@ public class ActionManager {
     private DeleteAction deleteAction;
     private EditAction editAction;
     private SlideShowAction slideShowAction;
+    private AddNewSlotAction addNewSlotAction;
+    private DeleteSlotAction deleteSlotAction;
+    private SelectSlotAction selectSlotAction;
+    private SlotColourAction slotColourAction;
+    private SlotStrokeAction slotStrokeAction;
 
     public ActionManager() {
         initialiseActions();
@@ -17,7 +22,11 @@ public class ActionManager {
         deleteAction = new DeleteAction();
         editAction = new EditAction();
         slideShowAction = new SlideShowAction();
-
+        addNewSlotAction = new AddNewSlotAction();
+        deleteSlotAction = new DeleteSlotAction();
+        selectSlotAction = new SelectSlotAction();
+        slotColourAction = new SlotColourAction();
+        slotStrokeAction = new SlotStrokeAction();
     }
 
     public InfoAction getInfoAction() {
@@ -58,5 +67,45 @@ public class ActionManager {
 
     public void setSlideShowAction(SlideShowAction slideShowAction) {
         this.slideShowAction = slideShowAction;
+    }
+
+    public AddNewSlotAction getAddNewSlotAction() {
+        return addNewSlotAction;
+    }
+
+    public void setAddNewSlotAction(AddNewSlotAction addNewSlotAction) {
+        this.addNewSlotAction = addNewSlotAction;
+    }
+
+    public DeleteSlotAction getDeleteSlotAction() {
+        return deleteSlotAction;
+    }
+
+    public void setDeleteSlotAction(DeleteSlotAction deleteSlotAction) {
+        this.deleteSlotAction = deleteSlotAction;
+    }
+
+    public SelectSlotAction getSelectSlotAction() {
+        return selectSlotAction;
+    }
+
+    public void setSelectSlotAction(SelectSlotAction selectSlotAction) {
+        this.selectSlotAction = selectSlotAction;
+    }
+
+    public SlotColourAction getSlotColourAction() {
+        return slotColourAction;
+    }
+
+    public void setSlotColourAction(SlotColourAction slotColourAction) {
+        this.slotColourAction = slotColourAction;
+    }
+
+    public SlotStrokeAction getSlotStrokeAction() {
+        return slotStrokeAction;
+    }
+
+    public void setSlotStrokeAction(SlotStrokeAction slotStrokeAction) {
+        this.slotStrokeAction = slotStrokeAction;
     }
 }
