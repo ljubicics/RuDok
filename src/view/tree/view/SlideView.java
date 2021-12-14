@@ -5,11 +5,14 @@ import model.workspace.Presentation;
 import model.workspace.Slide;
 import model.workspace.slotWorkspace.Slot;
 import observer.ISubscriber;
+import view.MainFrame;
 import view.tree.model.MyTreeNode;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -32,6 +35,32 @@ public class SlideView extends JPanel implements ISubscriber {
        for(Slot s : slide.getSlotArrayList()) {
            this.slotViewArrayList.add(new SlotView(s));
        }
+
+       this.addMouseListener(new MouseAdapter() {
+           @Override
+           public void mousePressed(MouseEvent e) {
+               PresentationView presentationView = (PresentationView) getParent().getParent().getParent().getParent();
+               Presentation presentation = presentationView.getPresentation();
+               presentation.getSlotState().mousePressed((SlideView) e.getComponent(), e);
+           }
+
+           @Override
+           public void mouseReleased(MouseEvent e) {
+               PresentationView presentationView = (PresentationView) getParent().getParent().getParent().getParent();
+               Presentation presentation = presentationView.getPresentation();
+               presentation.getSlotState().mouseReleased((SlideView) e.getComponent(), e);
+           }
+
+       });
+
+       this.addMouseMotionListener(new MouseAdapter() {
+           @Override
+           public void mouseDragged(MouseEvent e) {
+               PresentationView presentationView = (PresentationView) getParent().getParent().getParent().getParent();
+               Presentation presentation = presentationView.getPresentation();
+               presentation.getSlotState().mouseDragged((SlideView) e.getComponent(), e);
+           }
+       });
     }
 
     public Slide getSlide() {
@@ -70,6 +99,24 @@ public class SlideView extends JPanel implements ISubscriber {
         }
 
         g.drawImage(img,0,0, this.getWidth(),this.getHeight(), null);
+
+        Graphics2D g2d = (Graphics2D) g;
+        if(this.getParent().getParent().getParent().getParent() instanceof PresentationView) {
+            PresentationView presentationView = (PresentationView) this.getParent().getParent().getParent().getParent();
+            for (Component c : presentationView.getNavigatorPanel().getComponents()) {
+                if (c == this) {
+                    g2d.scale(0.3, 0.3);
+
+                }
+            }
+        } else {
+            g2d.scale(1.5, 1.5);
+        }
+
+        for(SlotView sw : this.slotViewArrayList) {
+            sw.paint(g2d);
+        }
+
     }
 
     @Override

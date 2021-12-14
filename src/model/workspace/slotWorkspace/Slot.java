@@ -2,21 +2,19 @@ package model.workspace.slotWorkspace;
 
 import java.awt.*;
 
-public abstract class Slot {
+public class Slot {
     private Point position;
     private int width;
     private int height;
     private Color color;
     private Stroke stroke;
-    private Shape shape;
 
-    public Slot(Point position, int width, int height, Color color, Stroke stroke, Shape shape) {
+    public Slot(Point position, int width, int height, Color color, Stroke stroke) {
         this.position = position;
         this.width = width;
         this.height = height;
         this.color = color;
-        this.stroke = stroke;
-        this.shape = shape;
+        this.stroke = new BasicStroke(3f);
     }
 
     public Point getPosition() {
@@ -59,11 +57,5 @@ public abstract class Slot {
         this.stroke = stroke;
     }
 
-    public Shape getShape() {
-        return shape;
-    }
 
-    public void setShape(Shape shape) {
-        this.shape = shape;
-    }
 }

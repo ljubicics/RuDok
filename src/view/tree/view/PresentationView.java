@@ -54,15 +54,17 @@ public class PresentationView extends JPanel implements ISubscriber {
         for(int i = 0; i < boxPanel.getComponentCount(); i++) {
             if(boxPanel.getComponent(i) instanceof SlideView) {
                 SlideView slideView = new SlideView(((SlideView) boxPanel.getComponent(i)).getSlide(), url);
-                slideView.setPreferredSize(new Dimension(70, 70));
-                slideView.setMinimumSize(new Dimension(70, 70));
-                slideView.setMaximumSize(new Dimension(70, 70));
+                slideView.setPreferredSize(new Dimension(90, 70));
+                slideView.setMinimumSize(new Dimension(90, 70));
+                slideView.setMaximumSize(new Dimension(90, 70));
                 navigatorPanel.add(slideView);
                 navigatorPanel.add((Box.createRigidArea(new Dimension(0, 10))));
                 navigatorPanel.revalidate();
                 navigatorPanel.repaint();
             }
         }
+
+
 
         JScrollPane scrollPaneRight = new JScrollPane();
         JScrollPane scrollPaneLeft = new JScrollPane();
@@ -209,9 +211,9 @@ public class PresentationView extends JPanel implements ISubscriber {
                 boxPanel.revalidate();
                 boxPanel.repaint();
                 SlideView slideView = new SlideView(mySlide, p.getURL());
-                slideView.setPreferredSize(new Dimension(70, 70));
-                slideView.setMinimumSize(new Dimension(70, 70));
-                slideView.setMaximumSize(new Dimension(70, 70));
+                slideView.setPreferredSize(new Dimension(90, 70));
+                slideView.setMinimumSize(new Dimension(90, 70));
+                slideView.setMaximumSize(new Dimension(90, 70));
                 navigatorPanel.add(slideView);
                 navigatorPanel.add(Box.createVerticalStrut(10));
                 navigatorPanel.revalidate();
@@ -234,9 +236,9 @@ public class PresentationView extends JPanel implements ISubscriber {
                 boxPanel.revalidate();
                 boxPanel.repaint();
                 SlideView slideView = new SlideView(mySlide, p.getURL());
-                slideView.setPreferredSize(new Dimension(70, 70));
-                slideView.setMinimumSize(new Dimension(70, 70));
-                slideView.setMaximumSize(new Dimension(70, 70));
+                slideView.setPreferredSize(new Dimension(90, 70));
+                slideView.setMinimumSize(new Dimension(90, 70));
+                slideView.setMaximumSize(new Dimension(90, 70));
                 navigatorPanel.add(slideView);
                 navigatorPanel.add(Box.createVerticalStrut(10));
                 navigatorPanel.revalidate();

@@ -23,8 +23,9 @@ public class SlotView {
         g.setPaint(Color.BLUE);
         g.setColor(Color.BLUE);
         g.setStroke(slot.getStroke());
-        g.draw(slot.getShape());
+        g.drawRect(slot.getPosition().x, slot.getPosition().y, slot.getWidth(), slot.getHeight());
         g.setPaint(slot.getColor());
-        g.fill(slot.getShape());
+        System.out.println("Nacrtao");
+        g.fillRect(slot.getPosition().x, slot.getPosition().y, slot.getWidth(), slot.getHeight());
     }
 }
