@@ -4,6 +4,7 @@ import model.nodes.RuNode;
 import model.workspace.Presentation;
 import model.workspace.Project;
 import model.workspace.Slide;
+import observer.ErrorFactory;
 import view.tree.model.MyTreeNode;
 
 import javax.swing.*;
@@ -44,18 +45,23 @@ public class TreeCellEditor extends DefaultTreeCellEditor implements ActionListe
         MyTreeNode mtn = (MyTreeNode) stavka;
         RuNode n = mtn.getN();
 
-        if (n instanceof Project) {
-            n.setName(e.getActionCommand());
-            this.cancelCellEditing();
-        } else if (n instanceof Presentation) {
-            n.setName(e.getActionCommand());
-            this.cancelCellEditing();
-        } else if (n instanceof Slide) {
-            n.setName(e.getActionCommand());
-            this.cancelCellEditing();
+        if(e.getActionCommand().equals("")) {
+            ErrorFactory.getInstance().generateError("Greska pri brisanju ", "Workspace se ne moze obrisati", "Izaberite drugi objekat", 0);
+            return;
         } else {
-            n.setName(e.getActionCommand());
-            this.cancelCellEditing();
+            if (n instanceof Project) {
+                n.setName(e.getActionCommand());
+                this.cancelCellEditing();
+            } else if (n instanceof Presentation) {
+                n.setName(e.getActionCommand());
+                this.cancelCellEditing();
+            } else if (n instanceof Slide) {
+                n.setName(e.getActionCommand());
+                this.cancelCellEditing();
+            } else {
+                n.setName(e.getActionCommand());
+                this.cancelCellEditing();
+            }
         }
     }
 }
