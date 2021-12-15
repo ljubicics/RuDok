@@ -1,5 +1,9 @@
 package controller;
 
+import view.MainFrame;
+import view.dialogs.SlotStrokeDialog;
+import view.tree.view.ProjectView;
+
 import java.awt.event.ActionEvent;
 
 public class SlotStrokeAction extends AbstractRudokAction{
@@ -12,6 +16,6 @@ public class SlotStrokeAction extends AbstractRudokAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        new SlotStrokeDialog((ProjectView) MainFrame.getInstance().getSplitPaneSaver().getRightComponent());
     }
 }

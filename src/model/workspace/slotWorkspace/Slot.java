@@ -15,7 +15,7 @@ public class Slot {
         this.width = width;
         this.height = height;
         this.color = color;
-        this.stroke = new BasicStroke(3f);
+        this.stroke = stroke;
         shape = new Rectangle((int)position.getX(), (int)position.getY(), width, height);
     }
 

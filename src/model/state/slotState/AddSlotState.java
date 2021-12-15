@@ -12,7 +12,7 @@ import java.awt.event.MouseEvent;
 public class AddSlotState implements SlotState{
 
     private Color colorSlota = new Color(255,255,255);
-    private Stroke strokeSlota;
+    private Stroke strokeSlota = new BasicStroke(3f);
 
     @Override
     public void mousePressed(SlideView sw, MouseEvent me) {
@@ -66,4 +66,11 @@ public class AddSlotState implements SlotState{
         this.colorSlota = colorSlota;
     }
 
+    public Stroke getStrokeSlota() {
+        return strokeSlota;
+    }
+
+    public void setStrokeSlota(Stroke strokeSlota) {
+        this.strokeSlota = strokeSlota;
+    }
 }
