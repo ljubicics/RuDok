@@ -1,6 +1,7 @@
 package view.tree.view;
 
 import model.nodes.RuNode;
+import model.state.slotState.SelectSlotState;
 import model.workspace.Presentation;
 import model.workspace.Slide;
 import model.workspace.slotWorkspace.Slot;
@@ -21,6 +22,7 @@ public class SlideView extends JPanel implements ISubscriber {
     private Slide slide;
     private String url;
     private ArrayList<SlotView> slotViewArrayList = new ArrayList<>();
+    private SlotView selectedSlot = null;
 
     public SlideView(Slide slide, String url) {
        this.slide = slide;
@@ -41,7 +43,16 @@ public class SlideView extends JPanel implements ISubscriber {
            public void mousePressed(MouseEvent e) {
                PresentationView presentationView = (PresentationView) getParent().getParent().getParent().getParent();
                Presentation presentation = presentationView.getPresentation();
-               presentation.getSlotState().mousePressed((SlideView) e.getComponent(), e);
+               if(presentation.getSlotState() instanceof SelectSlotState) {
+                   for(SlotView slotView : getSlotViewArrayList()) {
+                       if(slotView.getSlot().getShape().contains(e.getPoint())) {
+                           selectedSlot = slotView;
+                           break;
+                       }
+                   }
+               } else {
+                   presentation.getSlotState().mousePressed((SlideView) e.getComponent(), e);
+               }
            }
 
            @Override
@@ -85,6 +96,14 @@ public class SlideView extends JPanel implements ISubscriber {
 
     public void setSlotViewArrayList(ArrayList<SlotView> slotViewArrayList) {
         this.slotViewArrayList = slotViewArrayList;
+    }
+
+    public SlotView getSelectedSlot() {
+        return selectedSlot;
+    }
+
+    public void setSelectedSlot(SlotView selectedSlot) {
+        this.selectedSlot = selectedSlot;
     }
 
     @Override

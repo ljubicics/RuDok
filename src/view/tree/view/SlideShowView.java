@@ -36,7 +36,7 @@ public class SlideShowView extends JPanel {
 
         cardPanel.setLayout(new CardLayout());
         presentationView = new PresentationView(presentation);
-        this.currCard = 0;
+        this.currCard = 1;
 
         for(Component c : presentationView.getBoxPanel().getComponents()) {
             if(c instanceof SlideView) {
@@ -56,7 +56,7 @@ public class SlideShowView extends JPanel {
             if(currCard == presentation.getNodeChildren().size()) {
                 btnNext.setEnabled(false);
             }
-            if(currCard == 1) {
+            if(currCard >= 1) {
                 btnPrevious.setEnabled(true);
             }
         });
@@ -69,7 +69,7 @@ public class SlideShowView extends JPanel {
             cardPanel.revalidate();
             cardPanel.repaint();
 
-            if(currCard == 0) {
+            if(currCard == 1) {
                 btnPrevious.setEnabled(false);
             }
             btnNext.setEnabled(true);
@@ -86,6 +86,11 @@ public class SlideShowView extends JPanel {
             }
             presentation.removeSubscriber(presentationView);
         });
+
+        if(presentation.getNodeChildren().size() == 1) {
+            btnNext.setEnabled(false);
+            btnPrevious.setEnabled(false);
+        }
 
         btnPanel.add(btnPrevious);
         btnPanel.add(btnNext);

@@ -47,7 +47,6 @@ public class AddSlotState implements SlotState{
         }
         sw.revalidate();
         sw.repaint();
-
     }
 
     @Override
