@@ -17,7 +17,7 @@ public class SlideShowView extends JPanel {
     private JLabel lblPresName = new JLabel();
     private Presentation presentation;
     int currCard;
-    int maxCard;
+
 
     public SlideShowView(Presentation presentation) {
         this.presentation = presentation;
@@ -160,14 +160,6 @@ public class SlideShowView extends JPanel {
 
     public void setCurrCard(int currCard) {
         this.currCard = currCard;
-    }
-
-    public int getMaxCard() {
-        return maxCard;
-    }
-
-    public void setMaxCard(int maxCard) {
-        this.maxCard = maxCard;
     }
 
     public Presentation getPresentation() {

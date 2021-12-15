@@ -20,12 +20,12 @@ public class SlotView {
     }
 
     public void paint(Graphics2D g) {
-        g.setPaint(Color.BLUE);
-        g.setColor(Color.BLUE);
+        g.setColor(Color.BLACK);
+        g.setPaint(Color.BLACK);
         g.setStroke(slot.getStroke());
-        g.drawRect(slot.getPosition().x, slot.getPosition().y, slot.getWidth(), slot.getHeight());
+        g.draw(slot.getShape());
         g.setPaint(slot.getColor());
         System.out.println("Nacrtao");
-        g.fillRect(slot.getPosition().x, slot.getPosition().y, slot.getWidth(), slot.getHeight());
+        g.fill(slot.getShape());
     }
 }

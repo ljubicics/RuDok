@@ -17,13 +17,13 @@ public class SelectSlotState implements SlotState{
     @Override
     public void mouseDragged(SlideView sw, MouseEvent me) {
         if(sw.getSelectedSlot() != null) {
-            Shape shape = new GeneralPath();
+            GeneralPath shape = new GeneralPath();
 
-            ((GeneralPath) shape).moveTo(me.getPoint().getX(), me.getPoint().getY());
-            ((GeneralPath) shape).lineTo(me.getPoint().getX() + sw.getSelectedSlot().getSlot().getWidth(), me.getPoint().getY());
-            ((GeneralPath) shape).lineTo(me.getPoint().getX() + sw.getSelectedSlot().getSlot().getWidth(), me.getPoint().getY() + sw.getSelectedSlot().getSlot().getHeight());
-            ((GeneralPath) shape).lineTo(me.getPoint().getX(), me.getPoint().getY() + sw.getSelectedSlot().getSlot().getHeight());
-            ((GeneralPath) shape).closePath();
+            shape.moveTo(me.getPoint().getX(), me.getPoint().getY());
+            shape.lineTo(me.getPoint().getX() + sw.getSelectedSlot().getSlot().getWidth(), me.getPoint().getY());
+            shape.lineTo(me.getPoint().getX() + sw.getSelectedSlot().getSlot().getWidth(), me.getPoint().getY() + sw.getSelectedSlot().getSlot().getHeight());
+            shape.lineTo(me.getPoint().getX(), me.getPoint().getY() + sw.getSelectedSlot().getSlot().getHeight());
+            shape.closePath();
 
             sw.getSelectedSlot().getSlot().setShape(shape);
             sw.getSelectedSlot().getSlot().setPosition(me.getPoint());

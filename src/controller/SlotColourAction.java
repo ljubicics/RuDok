@@ -24,8 +24,9 @@ public class SlotColourAction extends AbstractRudokAction{
         ProjectView projectView = (ProjectView) MainFrame.getInstance().getSplitPaneSaver().getRightComponent();
         JTabbedPane tabbedPane = projectView.getTabbedPane();
         PresentationView presentationView = (PresentationView) tabbedPane.getSelectedComponent();
+        Color color = JColorChooser.showDialog(MainFrame.getInstance().getSplitPaneSaver().getRightComponent(), "Choose your next slot colour", Color.WHITE);
         if(presentationView.getPresentation().getSlotState() instanceof AddSlotState) {
-            ((AddSlotState) presentationView.getPresentation().getSlotState()).setColorSlota(new Color(255,255,255));
+            ((AddSlotState) presentationView.getPresentation().getSlotState()).setColorSlota(color);
         }
     }
 }
