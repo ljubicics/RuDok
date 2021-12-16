@@ -1,7 +1,5 @@
 package model.state.slotState;
 
-import model.workspace.Slide;
-import model.workspace.slotWorkspace.Slot;
 import view.tree.view.PresentationView;
 import view.tree.view.SlideView;
 import view.tree.view.SlotView;
@@ -25,7 +23,7 @@ public class DeleteSlotState implements SlotState{
 
         SlotView slotView1= null;
         for(SlotView slotView : sw.getSlotViewArrayList()) {
-            if(slotView.getSlot().getShape().contains(me.getPoint())) {
+            if(slotView.getShape().contains(me.getPoint())) {
                 slotView1 = slotView;
                 break;
             }

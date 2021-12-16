@@ -25,7 +25,7 @@ public class SelectSlotState implements SlotState{
             shape.lineTo(me.getPoint().getX(), me.getPoint().getY() + sw.getSelectedSlot().getSlot().getHeight());
             shape.closePath();
 
-            sw.getSelectedSlot().getSlot().setShape(shape);
+            sw.getSelectedSlot().setShape(shape);
             sw.getSelectedSlot().getSlot().setPosition(me.getPoint());
             sw.repaint();
 
