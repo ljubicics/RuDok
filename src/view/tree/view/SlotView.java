@@ -6,6 +6,7 @@ import java.awt.*;
 
 public class SlotView {
     public Slot slot;
+    private Shape shape;
 
     public SlotView(Slot slot) {
         this.slot = slot;
@@ -17,6 +18,14 @@ public class SlotView {
 
     public void setSlot(Slot slot) {
         this.slot = slot;
+    }
+
+    public Shape getShape() {
+        return shape;
+    }
+
+    public void setShape(Shape shape) {
+        this.shape = shape;
     }
 
     public void paint(Graphics2D g) {

@@ -23,6 +23,6 @@ public class DeleteSlotAction extends AbstractRudokAction{
         JTabbedPane tabbedPane = projectView.getTabbedPane();
         PresentationView presentationView = (PresentationView) tabbedPane.getSelectedComponent();
         Presentation presentation = presentationView.getPresentation();
-        presentation.setSlotState(new DeleteSlotState());
+        presentation.setSlotState(presentation.getSlotStateManager().getDeleteSlotState());
     }
 }

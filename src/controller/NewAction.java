@@ -30,7 +30,7 @@ public class NewAction extends AbstractRudokAction{
         }
         FactoryGenerator fg = new FactoryGenerator(o.getN());
         AbstractNodeFactory anf = fg.returnNodeFactory(o.getN());
-        MyTreeNode mtn = new MyTreeNode(anf.createRuNode(o.getN()));
+        MyTreeNode mtn = new MyTreeNode(anf.getNFT(o.getN()));
         ((RuNodeComposite)o.getN()).add(mtn.getN());
         SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
         /*if(o == null) {

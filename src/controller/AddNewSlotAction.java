@@ -22,6 +22,6 @@ public class AddNewSlotAction extends AbstractRudokAction{
         JTabbedPane tabbedPane = projectView.getTabbedPane();
         PresentationView presentationView = (PresentationView) tabbedPane.getSelectedComponent();
         Presentation presentation = presentationView.getPresentation();
-        presentation.setSlotState(new AddSlotState());
+        presentation.setSlotState(presentation.getSlotStateManager().getAddSlotState());
     }
 }

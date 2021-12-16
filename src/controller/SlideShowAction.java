@@ -27,13 +27,13 @@ public class SlideShowAction extends AbstractRudokAction{
                 ProjectView projectView = (ProjectView) (MainFrame.getInstance().getSplitPaneSaver().getRightComponent());
                 JTabbedPane jTabbedPane = projectView.getTabbedPane();
                 if(jTabbedPane.getSelectedComponent() instanceof SlideShowView) {
-                    SlideShowView slideShowView = (SlideShowView) jTabbedPane.getSelectedComponent();
-                    Presentation presentation = slideShowView.getPresentation();
-                    presentation.setPresentationState(new EditState());
+                    PresentationView presentationView = (PresentationView) projectView.getTabbedPane().getSelectedComponent();
+                    presentationView.setEditState();
+                    presentationView.radnja();
                 } else {
                     PresentationView presentationView = (PresentationView) jTabbedPane.getSelectedComponent();
-                    Presentation presentation = presentationView.getPresentation();
-                    presentation.setPresentationState(new ViewState());
+                    presentationView.setViewState();
+                    presentationView.radnja();
                 }
             }
     }

@@ -5,10 +5,9 @@ import view.tree.model.MyTreeNode;
 
 public abstract class AbstractNodeFactory {
 
-    public RuNode getNFT(MyTreeNode myTreeNode) {
-        RuNode selected = myTreeNode.getN();
-        RuNode node = createRuNode(selected);
-        node.setParent(selected);
+    public RuNode getNFT(RuNode ruNode) {
+        RuNode node = createRuNode(ruNode);
+        node.setParent(ruNode);
         return node;
     }
 

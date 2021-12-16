@@ -49,13 +49,12 @@ public class ProjectView extends JPanel implements ISubscriber {
         tabbedPane.addChangeListener(e -> {
             if(tabbedPane.getSelectedComponent() instanceof PresentationView) {
             PresentationView presentationView = (PresentationView) tabbedPane.getSelectedComponent();
-            Presentation presentation = presentationView.getPresentation();
-            presentation.setPresentationState(new EditState());
+            presentationView.setEditState();
             } else {
                 try {
                     SlideShowView slideShowView = (SlideShowView) tabbedPane.getSelectedComponent();
-                    Presentation presentation = slideShowView.getPresentation();
-                    presentation.setPresentationState(new ViewState());
+                    PresentationView presentationView = slideShowView.getPresentationView();
+                    presentationView.setViewState();
                 } catch (NullPointerException n) {
                     return;
                 }

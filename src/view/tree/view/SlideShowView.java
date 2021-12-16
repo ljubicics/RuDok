@@ -76,7 +76,9 @@ public class SlideShowView extends JPanel {
         });
 
         btnClose.addActionListener(e -> {
-            presentation.setPresentationState(new EditState());
+
+            presentationView.setEditState();
+            presentationView.radnja();
             for(Component c : cardPanel.getComponents()) {
                 if(c instanceof SlideView) {
                     SlideView sw = (SlideView) c;

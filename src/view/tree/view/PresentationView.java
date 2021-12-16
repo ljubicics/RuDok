@@ -1,6 +1,7 @@
 package view.tree.view;
 
 import model.nodes.RuNode;
+import model.state.PresentationStateManager;
 import model.workspace.Presentation;
 import model.workspace.Slide;
 import observer.ISubscriber;
@@ -23,8 +24,10 @@ public class PresentationView extends JPanel implements ISubscriber {
     private String presentationName;
     private JPanel navigatorPanel;
     private SlotActionBar slotActionBar;
+    private PresentationStateManager presentationStateManager;
 
     public PresentationView(Presentation presentation) {
+        presentationStateManager = new PresentationStateManager();
         this.presentation = presentation;
         this.presentation.addSubscriber(this);
         this.setLayout(new BorderLayout());
@@ -140,6 +143,34 @@ public class PresentationView extends JPanel implements ISubscriber {
 
     public void setNavigatorPanel(JPanel navigatorPanel) {
         this.navigatorPanel = navigatorPanel;
+    }
+
+    public void setEditState() {
+        this.presentationStateManager.setEditState();
+    }
+
+    public void setViewState() {
+        this.presentationStateManager.setViewState();
+    }
+
+    public void radnja() {
+        this.presentationStateManager.getCurrentState().changeState(getPresentation());
+    }
+
+    public SlotActionBar getSlotActionBar() {
+        return slotActionBar;
+    }
+
+    public void setSlotActionBar(SlotActionBar slotActionBar) {
+        this.slotActionBar = slotActionBar;
+    }
+
+    public PresentationStateManager getPresentationStateManager() {
+        return presentationStateManager;
+    }
+
+    public void setPresentationStateManager(PresentationStateManager presentationStateManager) {
+        this.presentationStateManager = presentationStateManager;
     }
 
     @Override
