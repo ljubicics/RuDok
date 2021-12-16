@@ -10,6 +10,7 @@ public class SlotView {
 
     public SlotView(Slot slot) {
         this.slot = slot;
+        shape = new Rectangle((int)slot.getPosition().getX(), (int)slot.getPosition().getY(), slot.getWidth(), slot.getHeight());
     }
 
     public Slot getSlot() {
@@ -32,9 +33,9 @@ public class SlotView {
         g.setColor(Color.BLACK);
         g.setPaint(Color.BLACK);
         g.setStroke(slot.getStroke());
-        g.draw(slot.getShape());
+        g.draw(shape);
         g.setPaint(slot.getColor());
         System.out.println("Nacrtao");
-        g.fill(slot.getShape());
+        g.fill(shape);
     }
 }

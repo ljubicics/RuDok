@@ -1,6 +1,5 @@
 package controller;
 
-import model.state.slotState.AddSlotState;
 import model.workspace.Presentation;
 import view.MainFrame;
 import view.tree.view.PresentationView;
@@ -21,7 +20,6 @@ public class AddNewSlotAction extends AbstractRudokAction{
         ProjectView projectView = (ProjectView) MainFrame.getInstance().getSplitPaneSaver().getRightComponent();
         JTabbedPane tabbedPane = projectView.getTabbedPane();
         PresentationView presentationView = (PresentationView) tabbedPane.getSelectedComponent();
-        Presentation presentation = presentationView.getPresentation();
-        presentation.setSlotState(presentation.getSlotStateManager().getAddSlotState());
+        presentationView.setSlotState(presentationView.getSlotStateManager().getAddSlotState());
     }
 }

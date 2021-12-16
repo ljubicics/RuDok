@@ -39,24 +39,22 @@ public class SlideView extends JPanel implements ISubscriber {
            @Override
            public void mousePressed(MouseEvent e) {
                PresentationView presentationView = (PresentationView) getParent().getParent().getParent().getParent();
-               Presentation presentation = presentationView.getPresentation();
-               if(presentation.getSlotState() instanceof SelectSlotState) {
+               if(presentationView.getSlotState() instanceof SelectSlotState) {
                    for(SlotView slotView : getSlotViewArrayList()) {
-                       if(slotView.getSlot().getShape().contains(e.getPoint())) {
+                       if(slotView.getShape().contains(e.getPoint())) {
                            selectedSlot = slotView;
                            break;
                        }
                    }
                } else {
-                   presentation.getSlotState().mousePressed((SlideView) e.getComponent(), e);
+                   presentationView.getSlotState().mousePressed((SlideView) e.getComponent(), e);
                }
            }
 
            @Override
            public void mouseReleased(MouseEvent e) {
                PresentationView presentationView = (PresentationView) getParent().getParent().getParent().getParent();
-               Presentation presentation = presentationView.getPresentation();
-               presentation.getSlotState().mouseReleased((SlideView) e.getComponent(), e);
+               presentationView.getSlotState().mouseReleased((SlideView) e.getComponent(), e);
            }
 
        });
@@ -65,8 +63,7 @@ public class SlideView extends JPanel implements ISubscriber {
            @Override
            public void mouseDragged(MouseEvent e) {
                PresentationView presentationView = (PresentationView) getParent().getParent().getParent().getParent();
-               Presentation presentation = presentationView.getPresentation();
-               presentation.getSlotState().mouseDragged((SlideView) e.getComponent(), e);
+               presentationView.getSlotState().mouseDragged((SlideView) e.getComponent(), e);
            }
        });
     }

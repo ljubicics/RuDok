@@ -1,7 +1,6 @@
 package model.factory;
 
 import model.nodes.RuNode;
-import view.tree.model.MyTreeNode;
 
 public abstract class AbstractNodeFactory {
 

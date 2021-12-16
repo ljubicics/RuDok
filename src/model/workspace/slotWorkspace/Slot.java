@@ -8,7 +8,6 @@ public class Slot {
     private int height;
     private Color color;
     private Stroke stroke;
-    private Shape shape;
 
     public Slot(Point position, int width, int height, Color color, Stroke stroke) {
         this.position = position;
@@ -16,7 +15,6 @@ public class Slot {
         this.height = height;
         this.color = color;
         this.stroke = stroke;
-        shape = new Rectangle((int)position.getX(), (int)position.getY(), width, height);
     }
 
     public Point getPosition() {
@@ -59,11 +57,4 @@ public class Slot {
         this.stroke = stroke;
     }
 
-    public Shape getShape() {
-        return shape;
-    }
-
-    public void setShape(Shape shape) {
-        this.shape = shape;
-    }
 }

@@ -61,11 +61,11 @@ public class SlotStrokeDialog extends JDialog {
                 return;
             }
 
-            if(presentationView.getPresentation().getSlotState() instanceof AddSlotState) {
+            if(presentationView.getSlotState() instanceof AddSlotState) {
                 if(punaRadBtn.isSelected()) {
-                    ((AddSlotState)presentationView.getPresentation().getSlotState()).setStrokeSlota(new BasicStroke(width));
+                    ((AddSlotState)presentationView.getSlotState()).setStrokeSlota(new BasicStroke(width));
                 } else {
-                    ((AddSlotState)presentationView.getPresentation().getSlotState()).setStrokeSlota(new BasicStroke(width, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 2.0f, new float[]{3.0f, 2.0f}, 0.0f));
+                    ((AddSlotState)presentationView.getSlotState()).setStrokeSlota(new BasicStroke(width, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 2.0f, new float[]{3.0f, 2.0f}, 0.0f));
                 }
             }
             dispose();

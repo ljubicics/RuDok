@@ -2,6 +2,8 @@ package view.tree.view;
 
 import model.nodes.RuNode;
 import model.state.PresentationStateManager;
+import model.state.slotState.SlotState;
+import model.state.slotState.SlotStateManager;
 import model.workspace.Presentation;
 import model.workspace.Slide;
 import observer.ISubscriber;
@@ -25,9 +27,13 @@ public class PresentationView extends JPanel implements ISubscriber {
     private JPanel navigatorPanel;
     private SlotActionBar slotActionBar;
     private PresentationStateManager presentationStateManager;
+    private SlotStateManager slotStateManager;
+    private SlotState slotState;
 
     public PresentationView(Presentation presentation) {
         presentationStateManager = new PresentationStateManager();
+        slotStateManager = new SlotStateManager();
+        slotState = slotStateManager.getSelectSlotState();
         this.presentation = presentation;
         this.presentation.addSubscriber(this);
         this.setLayout(new BorderLayout());
@@ -173,6 +179,37 @@ public class PresentationView extends JPanel implements ISubscriber {
 
     public void setPresentationStateManager(PresentationStateManager presentationStateManager) {
         this.presentationStateManager = presentationStateManager;
+    }
+
+    public SlotStateManager getSlotStateManager() {
+        return slotStateManager;
+    }
+
+    public void setSlotStateManager(SlotStateManager slotStateManager) {
+        this.slotStateManager = slotStateManager;
+    }
+
+    /*public void setAddSlotState() {
+        this.slotStateManager.setAddSlotState();
+    }*/
+
+    /*public void setDeleteSlotState() {
+        this.slotStateManager.setDeleteSlotState();
+    }
+
+    public void setSelectSlotState() {
+        this.slotStateManager.setSelectSlotState();
+    }*/
+
+    /*public void doActionSlot() {
+    }*/
+
+    public SlotState getSlotState() {
+        return slotState;
+    }
+
+    public void setSlotState(SlotState slotState) {
+        this.slotState = slotState;
     }
 
     @Override

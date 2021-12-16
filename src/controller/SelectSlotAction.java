@@ -22,7 +22,6 @@ public class SelectSlotAction extends AbstractRudokAction{
         ProjectView projectView = (ProjectView) MainFrame.getInstance().getSplitPaneSaver().getRightComponent();
         JTabbedPane tabbedPane = projectView.getTabbedPane();
         PresentationView presentationView = (PresentationView) tabbedPane.getSelectedComponent();
-        Presentation presentation = presentationView.getPresentation();
-        presentation.setSlotState(presentation.getSlotStateManager().getSelectSlotState());
+        presentationView.setSlotState(presentationView.getSlotStateManager().getSelectSlotState());
     }
 }
