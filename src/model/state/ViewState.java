@@ -6,7 +6,6 @@ import view.tree.view.ProjectView;
 import view.tree.view.SlideShowView;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class ViewState implements PresentationState{
 

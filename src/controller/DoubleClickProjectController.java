@@ -22,9 +22,13 @@ public class DoubleClickProjectController extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
         if(e.getClickCount()==2) {
             MyTreeNode o = (MyTreeNode) MainFrame.getInstance().getMyTree().getLastSelectedPathComponent();
-            RuNode node = o.getN();
-            if(node instanceof Project) {
-                MainFrame.getInstance().getSplitPaneSaver().setRightComponent(new ProjectView((Project) node));
+            try {
+                RuNode node = o.getN();
+                if(node instanceof Project) {
+                    MainFrame.getInstance().getSplitPaneSaver().setRightComponent(new ProjectView((Project) node));
+                }
+            } catch (NullPointerException ignored) {
+                return;
             }
         }
     }

@@ -33,7 +33,7 @@ public class SelectSlotState implements SlotState{
             if(sw.getParent().getParent().getParent().getParent() instanceof PresentationView) {
                 for(Component c : presentationView.getNavigatorPanel().getComponents()) {
                     if(c instanceof SlideView) {
-                        if(((SlideView) c).getSlide().getName().equals(sw.getSlide().getName())) {
+                        if(((SlideView) c).getSlide().getUuid().equals(sw.getSlide().getUuid())) {
                             c.revalidate();
                             c.repaint();
                         }

@@ -1,13 +1,10 @@
 package controller;
 
-
-import observer.ErrorFactory;
-import view.dialogs.AddNewPresentationDialog;
-import model.nodes.RuNode;
-import model.workspace.Presentation;
-import model.workspace.Project;
+import model.factory.AbstractNodeFactory;
+import model.factory.FactoryGenerator;
+import model.nodes.RuNodeComposite;
 import model.workspace.Slide;
-import model.workspace.Workspace;
+import observer.ErrorFactory;
 import view.MainFrame;
 
 import view.tree.model.MyTreeNode;
@@ -27,7 +24,16 @@ public class NewAction extends AbstractRudokAction{
 
     public void actionPerformed(ActionEvent e) {
         MyTreeNode o = (MyTreeNode) MainFrame.getInstance().getMyTree().getLastSelectedPathComponent();
-        if(o == null) {
+        if(o == null || o.getN() instanceof Slide){
+            ErrorFactory.getInstance().generateError("Greska pri dodavanju ", "Niste selektovali objekat na koji zelite da dodate", "Izaberite objekat i pokusajte ponovo", 0);
+            return;
+        }
+        FactoryGenerator fg = new FactoryGenerator(o.getN());
+        AbstractNodeFactory anf = fg.returnNodeFactory(o.getN());
+        MyTreeNode mtn = new MyTreeNode(anf.createRuNode(o.getN()));
+        ((RuNodeComposite)o.getN()).add(mtn.getN());
+        SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
+        /*if(o == null) {
             ErrorFactory.getInstance().generateError("Greska pri dodavanju ", "Niste selektovali objekat na koji zelite da dodate", "Izaberite objekat i pokusajte ponovo", 0);
             return;
         }
@@ -51,6 +57,6 @@ public class NewAction extends AbstractRudokAction{
         if(node instanceof Slide) {
             ErrorFactory.getInstance().generateError("Greska pri dodavanju ", "Ne mozete dodati objekat na slide", "Izaberite drugi objekat i pokusajte ponovo", 0);
             return;
-        }
+        }*/
     }
 }

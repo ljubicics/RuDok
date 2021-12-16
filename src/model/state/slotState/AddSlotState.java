@@ -36,10 +36,10 @@ public class AddSlotState implements SlotState{
         if(sw.getParent().getParent().getParent().getParent() instanceof PresentationView) {
             for(Component c : presentationView.getNavigatorPanel().getComponents()) {
                 if(c instanceof SlideView) {
-                    if(((SlideView) c).getSlide().getName().equals(sw.getSlide().getName())) {
-                        ((SlideView) c).getSlotViewArrayList().add(slotView);
-                        c.revalidate();
-                        c.repaint();
+                    if(((SlideView) c).getSlide().getUuid().equals(sw.getSlide().getUuid())) {
+                            ((SlideView) c).getSlotViewArrayList().add(slotView);
+                            c.revalidate();
+                            c.repaint();
                     }
                 }
             }

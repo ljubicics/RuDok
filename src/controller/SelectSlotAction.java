@@ -1,6 +1,5 @@
 package controller;
 
-import model.state.slotState.AddSlotState;
 import model.state.slotState.SelectSlotState;
 import model.workspace.Presentation;
 import view.MainFrame;
