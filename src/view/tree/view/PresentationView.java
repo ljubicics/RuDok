@@ -147,10 +147,12 @@ public class PresentationView extends JPanel implements ISubscriber {
 
     public void setEditState() {
         this.presentationStateManager.setEditState();
+        radnja();
     }
 
     public void setViewState() {
         this.presentationStateManager.setViewState();
+        radnja();
     }
 
     public void radnja() {

@@ -1,13 +1,10 @@
 package view.tree.view;
 
-import model.nodes.RuNode;
 import model.state.slotState.SelectSlotState;
 import model.workspace.Presentation;
 import model.workspace.Slide;
 import model.workspace.slotWorkspace.Slot;
 import observer.ISubscriber;
-import view.MainFrame;
-import view.tree.model.MyTreeNode;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
