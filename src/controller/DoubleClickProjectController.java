@@ -3,6 +3,8 @@ package controller;
 import model.nodes.RuNode;
 import model.workspace.Project;
 import view.MainFrame;
+import view.MenuBar;
+import view.ToolBar;
 import view.tree.model.MyTreeNode;
 import view.tree.view.MyTree;
 import view.tree.view.ProjectView;

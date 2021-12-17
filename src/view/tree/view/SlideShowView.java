@@ -78,7 +78,6 @@ public class SlideShowView extends JPanel {
         btnClose.addActionListener(e -> {
 
             presentationView.setEditState();
-            presentationView.radnja();
             for(Component c : cardPanel.getComponents()) {
                 if(c instanceof SlideView) {
                     SlideView sw = (SlideView) c;
@@ -89,7 +88,7 @@ public class SlideShowView extends JPanel {
             presentation.removeSubscriber(presentationView);
         });
 
-        if(presentation.getNodeChildren().size() == 1) {
+        if(presentation.getNodeChildren().size() <= 1) {
             btnNext.setEnabled(false);
             btnPrevious.setEnabled(false);
         }

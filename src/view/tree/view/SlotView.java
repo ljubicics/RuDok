@@ -7,6 +7,7 @@ import java.awt.*;
 public class SlotView {
     public Slot slot;
     private Shape shape;
+    private Stroke stroke;
 
     public SlotView(Slot slot) {
         this.slot = slot;

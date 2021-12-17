@@ -61,6 +61,13 @@ public class ProjectView extends JPanel implements ISubscriber {
             }
         });
 
+        MainFrame.getInstance().setJMenuBar(MainFrame.getInstance().getMyMenuBar());
+        if(!(MainFrame.getInstance().getComponent(0).equals(MainFrame.getInstance().getToolBar()))) {
+            MainFrame.getInstance().add(MainFrame.getInstance().getToolBar(),BorderLayout.NORTH);
+        }
+        MainFrame.getInstance().revalidate();
+        MainFrame.getInstance().repaint();
+
         this.add(tabbedPane, BorderLayout.CENTER);
         this.setVisible(true);
     }

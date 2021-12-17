@@ -4,7 +4,6 @@ import model.state.ViewState;
 import view.MainFrame;
 import view.tree.view.PresentationView;
 import view.tree.view.ProjectView;
-import view.tree.view.SlideShowView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -25,11 +24,7 @@ public class SlideShowAction extends AbstractRudokAction{
                 ProjectView projectView = (ProjectView) (MainFrame.getInstance().getSplitPaneSaver().getRightComponent());
                 JTabbedPane jTabbedPane = projectView.getTabbedPane();
                 PresentationView presentationView = (PresentationView) jTabbedPane.getSelectedComponent();
-                if(presentationView.getPresentationStateManager().getCurrentState() instanceof ViewState) {
-                    presentationView.setEditState();
-                } else {
                     presentationView.setViewState();
-                }
             }
     }
 }

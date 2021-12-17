@@ -191,6 +191,7 @@ public class PresentationView extends JPanel implements ISubscriber {
 
     /*public void setAddSlotState() {
         this.slotStateManager.setAddSlotState();
+
     }*/
 
     /*public void setDeleteSlotState() {
@@ -201,7 +202,8 @@ public class PresentationView extends JPanel implements ISubscriber {
         this.slotStateManager.setSelectSlotState();
     }*/
 
-    /*public void doActionSlot() {
+   /* public void doAddActionSlot() {
+        this.slotStateManager.
     }*/
 
     public SlotState getSlotState() {
@@ -220,7 +222,6 @@ public class PresentationView extends JPanel implements ISubscriber {
             System.out.println(this.getParent());
             JTabbedPane tabbedPane1 = (JTabbedPane) this.getParent();
             if(tabbedPane1 == null) {
-                ((ProjectView)MainFrame.getInstance().getSplitPaneSaver().getRightComponent()).getTabbedPane().removeTabAt(0);
                 return;
             }
             tabbedPane1.remove(this);
@@ -295,6 +296,8 @@ public class PresentationView extends JPanel implements ISubscriber {
             Slide mySlide2 = (Slide) p.getNodeChildren().get(p.getNodeChildren().size()-1);
             SlideView lastSlideView;
             try {
+                if((boxPanel.getComponentCount() - 2) < 0)
+                    return;
                  lastSlideView = (SlideView) boxPanel.getComponent(boxPanel.getComponentCount() - 2);
             }catch (ClassCastException e){
                 lastSlideView = (SlideView)navigatorPanel.getComponent(navigatorPanel.getComponentCount()-2);

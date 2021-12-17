@@ -1,11 +1,15 @@
 package view.tree.controller;
 
 import model.nodes.RuNode;
+import model.state.ViewState;
 import model.workspace.Presentation;
 import model.workspace.Project;
 import model.workspace.Slide;
 import observer.ErrorFactory;
+import view.MainFrame;
 import view.tree.model.MyTreeNode;
+import view.tree.view.PresentationView;
+import view.tree.view.ProjectView;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellEditor;
@@ -53,6 +57,18 @@ public class TreeCellEditor extends DefaultTreeCellEditor implements ActionListe
                 n.setName(e.getActionCommand());
                 this.cancelCellEditing();
             } else if (n instanceof Presentation) {
+                ProjectView projectView = (ProjectView) MainFrame.getInstance().getSplitPaneSaver().getRightComponent();
+                JTabbedPane jTabbedPane = null;
+                for(Component c : projectView.getComponents()) {
+                    if(c instanceof JTabbedPane) {
+                        jTabbedPane = (JTabbedPane) c;
+                    }
+                }
+                if(!(jTabbedPane.getSelectedComponent() instanceof PresentationView)) {
+                    ErrorFactory.getInstance().generateError("Greska pri promeni naziva prezentacije", "Prezentacija je u slide show rezimu rada", "Prebacite u edit rezim rada", 1);
+                    this.cancelCellEditing();
+                    return;
+                }
                 n.setName(e.getActionCommand());
                 this.cancelCellEditing();
             } else if (n instanceof Slide) {
