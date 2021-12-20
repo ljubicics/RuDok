@@ -51,7 +51,7 @@ public class SlotStrokeDialog extends JDialog {
         this.add(radBtnPanel, BorderLayout.CENTER);
         this.add(buttonsPanel, BorderLayout.SOUTH);
 
-        cancelBtn.addActionListener(e -> dispose());
+
 
         okBtn.addActionListener(e -> {
             width = (float) widthSlider.getValue();

@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 public class AddNewSlotAction extends AbstractRudokAction{
 
     public AddNewSlotAction() {
-        putValue(SMALL_ICON, loadIcon("icons/delete.png"));
+        putValue(SMALL_ICON, loadIcon("icons/add.png"));
         putValue(NAME, "Add new slot");
         putValue(SHORT_DESCRIPTION, "Adds new slot to selected slide");
     }
