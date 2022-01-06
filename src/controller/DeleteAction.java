@@ -30,7 +30,7 @@ public class DeleteAction extends AbstractRudokAction{
         }
         RuNode node = o.getN();
         if(!(node instanceof Workspace)) {
-            MainFrame.getInstance().getCommandManager().addCommand(new RemoveCommand(o, o.getN()));
+            MainFrame.getInstance().getCommandManager().addCommand(new RemoveCommand(o.getN()));
             /*RuNodeComposite parent = (RuNodeComposite) node.getParent();
             parent.removeChild(node);
              */
