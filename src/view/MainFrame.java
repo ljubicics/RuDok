@@ -2,6 +2,7 @@ package view;
 
 import controller.ActionManager;
 import controller.DoubleClickProjectController;
+import model.commands.CommandManager;
 import model.workspace.Workspace;
 import observer.ISubscriber;
 import observer.MyError;
@@ -21,6 +22,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     private MyTree myTree;
     private MyTreeModel myModel;
     private JSplitPane splitPaneSaver;
+    private CommandManager commandManager;
 
     private MainFrame() {
 
@@ -28,6 +30,7 @@ public class MainFrame extends JFrame implements ISubscriber {
 
     private void initialise() {
         this.actionManager = new ActionManager();
+        this.commandManager = new CommandManager();
         initialiseTree();
 
         initialiseGUI();
@@ -143,6 +146,14 @@ public class MainFrame extends JFrame implements ISubscriber {
 
     public void setSlideShowToolBar(JToolBar slideShowToolBar) {
         this.slideShowToolBar = slideShowToolBar;
+    }
+
+    public CommandManager getCommandManager() {
+        return commandManager;
+    }
+
+    public void setCommandManager(CommandManager commandManager) {
+        this.commandManager = commandManager;
     }
 
     @Override

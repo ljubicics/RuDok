@@ -16,6 +16,9 @@ public class ToolBar extends JToolBar {
         this.add(MainFrame.getInstance().getActionManager().getEditAction());
         this.addSeparator();
         this.add(MainFrame.getInstance().getActionManager().getSlideShowAction());
-
+        this.addSeparator();
+        this.add(MainFrame.getInstance().getActionManager().getUndoAction());
+        this.addSeparator();
+        this.add(MainFrame.getInstance().getActionManager().getRedoAction());
     }
 }

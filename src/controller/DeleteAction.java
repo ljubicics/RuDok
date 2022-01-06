@@ -1,5 +1,6 @@
 package controller;
 
+import model.commands.RemoveCommand;
 import model.nodes.RuNode;
 import model.nodes.RuNodeComposite;
 import model.workspace.Workspace;
@@ -29,8 +30,10 @@ public class DeleteAction extends AbstractRudokAction{
         }
         RuNode node = o.getN();
         if(!(node instanceof Workspace)) {
-            RuNodeComposite parent = (RuNodeComposite) node.getParent();
+            MainFrame.getInstance().getCommandManager().addCommand(new RemoveCommand(o, o.getN()));
+            /*RuNodeComposite parent = (RuNodeComposite) node.getParent();
             parent.removeChild(node);
+             */
          SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
         } else {
             ErrorFactory.getInstance().generateError("Greska pri brisanju ", "Workspace se ne moze obrisati", "Izaberite drugi objekat", 0);

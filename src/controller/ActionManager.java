@@ -11,6 +11,8 @@ public class ActionManager {
     private SelectSlotAction selectSlotAction;
     private SlotColourAction slotColourAction;
     private SlotStrokeAction slotStrokeAction;
+    private RedoAction redoAction;
+    private UndoAction undoAction;
 
     public ActionManager() {
         initialiseActions();
@@ -27,6 +29,8 @@ public class ActionManager {
         selectSlotAction = new SelectSlotAction();
         slotColourAction = new SlotColourAction();
         slotStrokeAction = new SlotStrokeAction();
+        redoAction = new RedoAction();
+        undoAction = new UndoAction();
     }
 
     public InfoAction getInfoAction() {
@@ -107,5 +111,21 @@ public class ActionManager {
 
     public void setSlotStrokeAction(SlotStrokeAction slotStrokeAction) {
         this.slotStrokeAction = slotStrokeAction;
+    }
+
+    public RedoAction getRedoAction() {
+        return redoAction;
+    }
+
+    public void setRedoAction(RedoAction redoAction) {
+        this.redoAction = redoAction;
+    }
+
+    public UndoAction getUndoAction() {
+        return undoAction;
+    }
+
+    public void setUndoAction(UndoAction undoAction) {
+        this.undoAction = undoAction;
     }
 }

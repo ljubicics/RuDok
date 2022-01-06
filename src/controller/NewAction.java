@@ -1,5 +1,6 @@
 package controller;
 
+import model.commands.AddCommand;
 import model.factory.AbstractNodeFactory;
 import model.factory.FactoryGenerator;
 import model.nodes.RuNodeComposite;
@@ -28,11 +29,14 @@ public class NewAction extends AbstractRudokAction{
             ErrorFactory.getInstance().generateError("Greska pri dodavanju ", "Niste selektovali objekat na koji zelite da dodate", "Izaberite objekat i pokusajte ponovo", 0);
             return;
         }
-        FactoryGenerator fg = new FactoryGenerator(o.getN());
+        MainFrame.getInstance().getCommandManager().addCommand(new AddCommand(o, o.getN()));
+       /* FactoryGenerator fg = new FactoryGenerator(o.getN());
         AbstractNodeFactory anf = fg.returnNodeFactory(o.getN());
         MyTreeNode mtn = new MyTreeNode(anf.getNFT(o.getN()));
         ((RuNodeComposite)o.getN()).add(mtn.getN());
         SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
+
+        */
         /*if(o == null) {
             ErrorFactory.getInstance().generateError("Greska pri dodavanju ", "Niste selektovali objekat na koji zelite da dodate", "Izaberite objekat i pokusajte ponovo", 0);
             return;

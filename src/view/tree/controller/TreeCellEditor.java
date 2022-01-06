@@ -1,5 +1,6 @@
 package view.tree.controller;
 
+import model.commands.RenameCommand;
 import model.nodes.RuNode;
 import model.state.ViewState;
 import model.workspace.Presentation;
@@ -54,7 +55,8 @@ public class TreeCellEditor extends DefaultTreeCellEditor implements ActionListe
             return;
         } else {
             if (n instanceof Project) {
-                n.setName(e.getActionCommand());
+                MainFrame.getInstance().getCommandManager().addCommand(new RenameCommand(e.getActionCommand(), n));
+               // n.setName(e.getActionCommand());
                 this.cancelCellEditing();
             } else if (n instanceof Presentation) {
                 ProjectView projectView = (ProjectView) MainFrame.getInstance().getSplitPaneSaver().getRightComponent();
@@ -69,13 +71,16 @@ public class TreeCellEditor extends DefaultTreeCellEditor implements ActionListe
                     this.cancelCellEditing();
                     return;
                 }
-                n.setName(e.getActionCommand());
+                MainFrame.getInstance().getCommandManager().addCommand(new RenameCommand(e.getActionCommand(), n));
+                //n.setName(e.getActionCommand());
                 this.cancelCellEditing();
             } else if (n instanceof Slide) {
-                n.setName(e.getActionCommand());
+                MainFrame.getInstance().getCommandManager().addCommand(new RenameCommand(e.getActionCommand(), n));
+               // n.setName(e.getActionCommand());
                 this.cancelCellEditing();
             } else {
-                n.setName(e.getActionCommand());
+                MainFrame.getInstance().getCommandManager().addCommand(new RenameCommand(e.getActionCommand(), n));
+                // n.setName(e.getActionCommand());
                 this.cancelCellEditing();
             }
         }
