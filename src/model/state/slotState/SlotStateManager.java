@@ -1,6 +1,8 @@
 package model.state.slotState;
 
-public class SlotStateManager {
+import java.io.Serializable;
+
+public class SlotStateManager implements Serializable {
     private AddSlotState addSlotState;
     private DeleteSlotState deleteSlotState;
     private SelectSlotState selectSlotState;

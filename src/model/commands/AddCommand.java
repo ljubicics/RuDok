@@ -18,9 +18,9 @@ public class AddCommand extends AbstractCommand{
     private MyTreeNode selektovani;
     private ArrayList<Slot> slots = new ArrayList<>();
 
-    public AddCommand(MyTreeNode selektovani, RuNode node) {
+    public AddCommand(MyTreeNode selektovani) {
         this.selektovani = selektovani;
-        this.node = node;
+        this.node = selektovani.getN();
     }
 
     @Override
@@ -30,7 +30,6 @@ public class AddCommand extends AbstractCommand{
         dete = new MyTreeNode(anf.getNFT(selektovani.getN()));
         if (dete.getN() instanceof Slide){
             ((Slide)dete.getN()).getSlotArrayList().addAll(this.slots);
-            System.out.println("Vracam slotove na slajd");
         }
         ((RuNodeComposite)selektovani.getN()).add(dete.getN());
         SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());

@@ -6,8 +6,9 @@ import view.tree.view.ProjectView;
 import view.tree.view.SlideShowView;
 
 import javax.swing.*;
+import java.io.Serializable;
 
-public class ViewState implements PresentationState{
+public class ViewState implements PresentationState, Serializable {
 
     @Override
     public void changeState(Presentation presentation) {

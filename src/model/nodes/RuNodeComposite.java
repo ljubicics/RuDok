@@ -1,8 +1,9 @@
 package model.nodes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RuNodeComposite extends RuNode{
+public class RuNodeComposite extends RuNode implements Serializable {
 
     private ArrayList<RuNode> nodeChildren;
 

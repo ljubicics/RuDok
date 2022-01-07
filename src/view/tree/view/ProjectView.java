@@ -15,10 +15,11 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectView extends JPanel implements ISubscriber {
+public class ProjectView extends JPanel implements ISubscriber{
 
     private String projectName;
     private Project project;
@@ -148,4 +149,6 @@ public class ProjectView extends JPanel implements ISubscriber {
         }
 
     }
+
+
 }

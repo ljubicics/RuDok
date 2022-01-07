@@ -29,7 +29,7 @@ public class NewAction extends AbstractRudokAction{
             ErrorFactory.getInstance().generateError("Greska pri dodavanju ", "Niste selektovali objekat na koji zelite da dodate", "Izaberite objekat i pokusajte ponovo", 0);
             return;
         }
-        MainFrame.getInstance().getCommandManager().addCommand(new AddCommand(o, o.getN()));
+        MainFrame.getInstance().getCommandManager().addCommand(new AddCommand(o));
        /* FactoryGenerator fg = new FactoryGenerator(o.getN());
         AbstractNodeFactory anf = fg.returnNodeFactory(o.getN());
         MyTreeNode mtn = new MyTreeNode(anf.getNFT(o.getN()));

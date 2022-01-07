@@ -12,10 +12,11 @@ import view.SlotActionBar;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PresentationView extends JPanel implements ISubscriber {
+public class PresentationView extends JPanel implements ISubscriber{
 
     private String autorName;
     public JLabel autorLbl;

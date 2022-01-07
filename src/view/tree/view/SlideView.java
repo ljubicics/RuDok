@@ -1,7 +1,7 @@
 package view.tree.view;
 
 import model.state.slotState.SelectSlotState;
-import model.workspace.Presentation;
+
 import model.workspace.Slide;
 import model.workspace.slotWorkspace.Slot;
 import observer.ISubscriber;
@@ -12,9 +12,10 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SlideView extends JPanel implements ISubscriber {
+public class SlideView extends JPanel implements ISubscriber{
 
     private Slide slide;
     private String url;

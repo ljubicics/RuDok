@@ -3,11 +3,11 @@ package view.tree.view;
 import model.workspace.slotWorkspace.Slot;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class SlotView {
+public class SlotView implements Serializable{
     public Slot slot;
     private Shape shape;
-    private Stroke stroke;
 
     public SlotView(Slot slot) {
         this.slot = slot;
@@ -36,7 +36,6 @@ public class SlotView {
         g.setStroke(slot.getStroke());
         g.draw(shape);
         g.setPaint(slot.getColor());
-        System.out.println("Nacrtao");
         g.fill(shape);
     }
 }

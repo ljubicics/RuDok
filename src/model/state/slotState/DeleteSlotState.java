@@ -6,8 +6,9 @@ import view.tree.view.SlotView;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
-public class DeleteSlotState implements SlotState{
+public class DeleteSlotState implements SlotState, Serializable {
     @Override
     public void mousePressed(SlideView sw, MouseEvent me) {
         PresentationView presentationView = (PresentationView) sw.getParent().getParent().getParent().getParent();

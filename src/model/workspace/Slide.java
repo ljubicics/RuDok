@@ -3,10 +3,11 @@ package model.workspace;
 import model.nodes.RuNode;
 import model.workspace.slotWorkspace.Slot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Slide extends RuNode {
+public class Slide extends RuNode implements Serializable {
 
     private ArrayList<Slot> slotArrayList;
     private UUID uuid;

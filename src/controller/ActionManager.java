@@ -13,6 +13,8 @@ public class ActionManager {
     private SlotStrokeAction slotStrokeAction;
     private RedoAction redoAction;
     private UndoAction undoAction;
+    private SaveProjectAction saveProjectAction;
+    private OpenProjectAction openProjectAction;
 
     public ActionManager() {
         initialiseActions();
@@ -31,6 +33,8 @@ public class ActionManager {
         slotStrokeAction = new SlotStrokeAction();
         redoAction = new RedoAction();
         undoAction = new UndoAction();
+        saveProjectAction = new SaveProjectAction();
+        openProjectAction = new OpenProjectAction();
     }
 
     public InfoAction getInfoAction() {
@@ -127,5 +131,21 @@ public class ActionManager {
 
     public void setUndoAction(UndoAction undoAction) {
         this.undoAction = undoAction;
+    }
+
+    public SaveProjectAction getSaveProjectAction() {
+        return saveProjectAction;
+    }
+
+    public void setSaveProjectAction(SaveProjectAction saveProjectAction) {
+        this.saveProjectAction = saveProjectAction;
+    }
+
+    public OpenProjectAction getOpenProjectAction() {
+        return openProjectAction;
+    }
+
+    public void setOpenProjectAction(OpenProjectAction openProjectAction) {
+        this.openProjectAction = openProjectAction;
     }
 }

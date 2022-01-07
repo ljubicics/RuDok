@@ -7,8 +7,9 @@ import view.tree.view.ProjectView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 
-public class EditState implements PresentationState{
+public class EditState implements PresentationState, Serializable {
     @Override
     public void changeState(Presentation presentation) {
             PresentationView presentationView = new PresentationView(presentation);

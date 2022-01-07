@@ -1,15 +1,18 @@
 package model.workspace.slotWorkspace;
 
-import java.awt.*;
+import controller.SerializableStrokeAdapter;
 
-public class Slot {
+import java.awt.*;
+import java.io.Serializable;
+
+public class Slot implements Serializable {
     private Point position;
     private int width;
     private int height;
     private Color color;
-    private Stroke stroke;
+    private SerializableStrokeAdapter stroke;
 
-    public Slot(Point position, int width, int height, Color color, Stroke stroke) {
+    public Slot(Point position, int width, int height, Color color, SerializableStrokeAdapter stroke) {
         this.position = position;
         this.width = width;
         this.height = height;
@@ -49,12 +52,11 @@ public class Slot {
         this.color = color;
     }
 
-    public Stroke getStroke() {
-        return stroke;
-    }
-
-    public void setStroke(Stroke stroke) {
+    public void setStroke(SerializableStrokeAdapter stroke) {
         this.stroke = stroke;
     }
 
+    public SerializableStrokeAdapter getStroke() {
+        return stroke;
+    }
 }

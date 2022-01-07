@@ -3,10 +3,11 @@ package model.nodes;
 import observer.IPublisher;
 import observer.ISubscriber;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RuNode implements IPublisher {
+public class RuNode implements IPublisher, Serializable {
     private String name;
     private RuNode parent;
 

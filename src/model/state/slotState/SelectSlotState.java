@@ -6,8 +6,9 @@ import view.tree.view.SlideView;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.GeneralPath;
+import java.io.Serializable;
 
-public class SelectSlotState implements SlotState{
+public class SelectSlotState implements SlotState, Serializable {
 
     @Override
     public void mousePressed(SlideView sw, MouseEvent me) {

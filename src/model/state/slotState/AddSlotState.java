@@ -1,5 +1,6 @@
 package model.state.slotState;
 
+import controller.SerializableStrokeAdapter;
 import model.workspace.Slide;
 import model.workspace.slotWorkspace.Slot;
 import view.tree.view.PresentationView;
@@ -8,11 +9,12 @@ import view.tree.view.SlotView;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
-public class AddSlotState implements SlotState{
+public class AddSlotState implements SlotState, Serializable {
 
     private Color colorSlota = new Color(255,255,255);
-    private Stroke strokeSlota = new BasicStroke(3f);
+    private SerializableStrokeAdapter strokeSlota = new SerializableStrokeAdapter(new BasicStroke(3f));
 
     @Override
     public void mousePressed(SlideView sw, MouseEvent me) {
@@ -70,7 +72,8 @@ public class AddSlotState implements SlotState{
         return strokeSlota;
     }
 
-    public void setStrokeSlota(Stroke strokeSlota) {
+    public void setStrokeSlota(SerializableStrokeAdapter strokeSlota) {
         this.strokeSlota = strokeSlota;
     }
+
 }

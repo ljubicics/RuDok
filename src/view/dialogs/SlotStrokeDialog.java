@@ -1,5 +1,6 @@
 package view.dialogs;
 
+import controller.SerializableStrokeAdapter;
 import observer.ErrorFactory;
 import view.MainFrame;
 import view.tree.view.PresentationView;
@@ -62,9 +63,9 @@ public class SlotStrokeDialog extends JDialog {
 
 
                 if(punaRadBtn.isSelected()) {
-                    presentationView.getSlotStateManager().getAddSlotState().setStrokeSlota(new BasicStroke(width));
+                    presentationView.getSlotStateManager().getAddSlotState().setStrokeSlota(new SerializableStrokeAdapter(new BasicStroke(width)));
                 } else {
-                    presentationView.getSlotStateManager().getAddSlotState().setStrokeSlota(new BasicStroke(width, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 2.0f, new float[]{3.0f, 2.0f}, 0.0f));
+                    presentationView.getSlotStateManager().getAddSlotState().setStrokeSlota(new SerializableStrokeAdapter(new BasicStroke(width, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 2.0f, new float[]{3.0f, 2.0f}, 0.0f)));
                 }
             dispose();
         });

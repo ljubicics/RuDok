@@ -1,6 +1,8 @@
 package model.state;
 
-public class PresentationStateManager {
+import java.io.Serializable;
+
+public class PresentationStateManager implements Serializable {
     private EditState editState;
     private ViewState viewState;
     private PresentationState currentState;

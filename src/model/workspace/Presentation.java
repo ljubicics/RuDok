@@ -2,7 +2,9 @@ package model.workspace;
 
 import model.nodes.RuNodeComposite;
 
-public class Presentation extends RuNodeComposite {
+import java.io.Serializable;
+
+public class Presentation extends RuNodeComposite implements Serializable {
 
     private String autor;
     private String url;

@@ -34,8 +34,7 @@ public class RemoveCommand extends AbstractCommand{
     public void doCommand() {
         ((RuNodeComposite)parent).removeChild(node);
         SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
-        if (node instanceof Project){
-            System.out.println("Obrisan projekat");
+        if (node instanceof Project){;
             MainFrame.getInstance().getSplitPaneSaver().setRightComponent(new JPanel());
             MainFrame.getInstance().setJMenuBar(MainFrame.getInstance().getMyMenuBar());
             MainFrame.getInstance().add(MainFrame.getInstance().getToolBar(), BorderLayout.NORTH);
