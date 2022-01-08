@@ -1,6 +1,7 @@
 package controller;
 
 import model.workspace.Project;
+import observer.ErrorFactory;
 import view.MainFrame;
 
 import javax.swing.*;
@@ -24,8 +25,10 @@ public class SaveProjectAction extends AbstractRudokAction{
         Project project = MainFrame.getInstance().getMyTree().getCurrentProject();
         File projectFile = null;
 
-        if (project == null)
+        if (project == null) {
+            ErrorFactory.getInstance().generateError("Greska pri cuvanju ", "Niste selektovali oprojekat koji zelite da sacuvate", "Izaberite projekat i pokusajte ponovo", 0);
             return;
+        }
             if (project.isChanged()) {
                 return;
             }

@@ -4,6 +4,7 @@ import model.factory.AbstractNodeFactory;
 import model.factory.FactoryGenerator;
 import model.nodes.RuNode;
 import model.nodes.RuNodeComposite;
+import model.workspace.Project;
 import model.workspace.Slide;
 import model.workspace.slotWorkspace.Slot;
 import view.MainFrame;
@@ -25,13 +26,13 @@ public class AddCommand extends AbstractCommand{
 
     @Override
     public void doCommand() {
-        FactoryGenerator fg = new FactoryGenerator(selektovani.getN());
-        AbstractNodeFactory anf = fg.returnNodeFactory(selektovani.getN());
-        dete = new MyTreeNode(anf.getNFT(selektovani.getN()));
+        FactoryGenerator fg = new FactoryGenerator(node);
+        AbstractNodeFactory anf = fg.returnNodeFactory(node);
+        dete = new MyTreeNode(anf.getNFT(node));
         if (dete.getN() instanceof Slide){
             ((Slide)dete.getN()).getSlotArrayList().addAll(this.slots);
         }
-        ((RuNodeComposite)selektovani.getN()).add(dete.getN());
+        ((RuNodeComposite)node).add(dete.getN());
         SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
         MainFrame.getInstance().getMyTree().expandPath(MainFrame.getInstance().getMyTree().getSelectionPath());
     }

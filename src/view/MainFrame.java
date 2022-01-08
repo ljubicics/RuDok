@@ -135,6 +135,7 @@ public class MainFrame extends JFrame implements ISubscriber {
 
     public void reloadTree() {
         myModel.reload();
+        myTree.updateUI();
         for(int i = 0; i < myTree.getRowCount(); i++) {
             myTree.expandRow(i);
         }
