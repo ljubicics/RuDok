@@ -15,6 +15,7 @@ public class ActionManager {
     private UndoAction undoAction;
     private SaveProjectAction saveProjectAction;
     private OpenProjectAction openProjectAction;
+    private ShareAction shareAction;
 
     public ActionManager() {
         initialiseActions();
@@ -35,6 +36,7 @@ public class ActionManager {
         undoAction = new UndoAction();
         saveProjectAction = new SaveProjectAction();
         openProjectAction = new OpenProjectAction();
+        shareAction = new ShareAction();
     }
 
     public InfoAction getInfoAction() {
@@ -147,5 +149,13 @@ public class ActionManager {
 
     public void setOpenProjectAction(OpenProjectAction openProjectAction) {
         this.openProjectAction = openProjectAction;
+    }
+
+    public ShareAction getShareAction() {
+        return shareAction;
+    }
+
+    public void setShareAction(ShareAction shareAction) {
+        this.shareAction = shareAction;
     }
 }

@@ -12,7 +12,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class SlideView extends JPanel implements ISubscriber{
