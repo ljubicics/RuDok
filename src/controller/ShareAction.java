@@ -13,7 +13,7 @@ public class ShareAction extends AbstractRudokAction{
 
     public ShareAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F9, ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("icons/share.png"));
+        putValue(SMALL_ICON, loadIcon("icons/sharepresentation.png"));
         putValue(NAME, "Share");
         putValue(SHORT_DESCRIPTION, "Share");
     }

@@ -154,7 +154,6 @@ public class ActionManager {
     public ShareAction getShareAction() {
         return shareAction;
     }
-
     public void setShareAction(ShareAction shareAction) {
         this.shareAction = shareAction;
     }
