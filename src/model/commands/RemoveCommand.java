@@ -4,6 +4,7 @@ import model.factory.AbstractNodeFactory;
 import model.factory.FactoryGenerator;
 import model.nodes.RuNode;
 import model.nodes.RuNodeComposite;
+import model.workspace.Presentation;
 import model.workspace.Project;
 import model.workspace.Slide;
 import model.workspace.slotWorkspace.Slot;
@@ -18,6 +19,7 @@ public class RemoveCommand extends AbstractCommand{
     private RuNode node;
     private RuNode parent;
     private ArrayList<Slot> slots = new ArrayList<>();
+    private ArrayList<Project> sharedPresentations = new ArrayList<>();
 
     public RemoveCommand(RuNode node) {
         this.node = node;
@@ -26,6 +28,15 @@ public class RemoveCommand extends AbstractCommand{
             for (Slot s : ((Slide) node).getSlotArrayList()) {
                 System.out.println("Punim slotove");
                 slots.add(s);
+            }
+        }
+        if(node instanceof Presentation) {
+            for (int i = 0; i < MainFrame.getInstance().getMyTree().getModel().getChildCount(MainFrame.getInstance().getMyTree().getModel().getRoot()); i++) {
+                MyTreeNode myTreeNode = (MyTreeNode) MainFrame.getInstance().getMyTree().getModel().getChild(MainFrame.getInstance().getMyTree().getModel().getRoot(), i);
+                RuNodeComposite projectComposite = (RuNodeComposite) myTreeNode.getN();
+                if (projectComposite.getNodeChildren().contains(node) && !(projectComposite.equals(parent))) {
+                    this.sharedPresentations.add((Project) projectComposite);
+                }
             }
         }
     }
@@ -41,17 +52,33 @@ public class RemoveCommand extends AbstractCommand{
             MainFrame.getInstance().revalidate();
             MainFrame.getInstance().repaint();
         }
+        if(node instanceof Presentation && ((Presentation) node).isShared()) {
+            System.out.println("ULAZI");
+            for(int i = 0; i < MainFrame.getInstance().getMyTree().getModel().getChildCount(MainFrame.getInstance().getMyTree().getModel().getRoot()); i++) {
+                MyTreeNode myTreeNode = (MyTreeNode) MainFrame.getInstance().getMyTree().getModel().getChild(MainFrame.getInstance().getMyTree().getModel().getRoot(), i);
+                RuNodeComposite projectComposite = (RuNodeComposite) myTreeNode.getN();
+                for(int j = 0; j < projectComposite.getNodeChildren().size(); j++) {
+                    RuNodeComposite ruNodeComposite = (RuNodeComposite) projectComposite.getChildAt(j);
+                    if (ruNodeComposite.getName().equals(node.getName())) {
+                        projectComposite.removeChild(ruNodeComposite);
+                    }
+                }
+            }
+        }
     }
 
     @Override
     public void undoCommand() {
-        FactoryGenerator fg = new FactoryGenerator(parent);
-        AbstractNodeFactory anf = fg.returnNodeFactory(parent);
-        MyTreeNode mtn = new MyTreeNode(anf.getNFT(parent));
-        if (mtn.getN() instanceof Slide){
-            ((Slide)mtn.getN()).getSlotArrayList().addAll(this.slots);
+        if (node instanceof Slide){
+            ((Slide)node).getSlotArrayList().addAll(this.slots);
         }
-        ((RuNodeComposite)parent).add(mtn.getN());
+        if(node instanceof Presentation) {
+            for(int i = 0; i < sharedPresentations.size(); i++) {
+                sharedPresentations.get(i).add(node);
+            }
+        }
+        ((RuNodeComposite)parent).add(node);
+        node.setParent(parent);
         SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
     }
 }

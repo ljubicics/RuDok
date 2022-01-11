@@ -8,6 +8,7 @@ public class Presentation extends RuNodeComposite implements Serializable {
 
     private String autor;
     private String url;
+    private boolean isShared;
 
     public Presentation(String name, RuNodeComposite parent, String autor, String url) {
         super(name, parent);
@@ -41,4 +42,11 @@ public class Presentation extends RuNodeComposite implements Serializable {
         this.url = url;
     }
 
+    public boolean isShared() {
+        return isShared;
+    }
+
+    public void setShared(boolean shared) {
+        isShared = shared;
+    }
 }

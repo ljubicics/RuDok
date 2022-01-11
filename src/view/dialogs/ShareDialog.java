@@ -48,6 +48,7 @@ public class ShareDialog extends JDialog {
                             MyTreeNode myTreeNode = (MyTreeNode) MainFrame.getInstance().getMyTree().getModel().getChild(MainFrame.getInstance().getMyTree().getModel().getRoot(), i);
                             RuNode ruNode = myTreeNode.getN();
                             if(ruNode.getName().equals(selected)) {
+                                presentation.setShared(true);
                                 ((RuNodeComposite)ruNode).add(presentation);
                             }
                         }

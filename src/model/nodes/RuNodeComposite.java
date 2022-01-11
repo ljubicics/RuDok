@@ -30,4 +30,8 @@ public class RuNodeComposite extends RuNode implements Serializable {
         this.nodeChildren = nodeChildren;
     }
 
+    public RuNode getChildAt(int i) {
+        return  this.getNodeChildren().get(i);
+    }
+
 }
