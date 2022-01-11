@@ -19,6 +19,7 @@ public class AddCommand extends AbstractCommand{
     private RuNode selektovani;
     private MyTreeNode dete;
     private ArrayList<Slot> slots = new ArrayList<>();
+    private ArrayList<Project> projectArrayList = new ArrayList<>();
 
     public AddCommand(RuNode selektovani) {
         this.selektovani = selektovani;
@@ -38,7 +39,13 @@ public class AddCommand extends AbstractCommand{
             ((RuNodeComposite) selektovani).add(dete.getN());
         } else {
             ((RuNodeComposite) selektovani).add(dete.getN());
-
+            if(dete.getN()instanceof Presentation) {
+                if(((Presentation)dete.getN()).isShared()) {
+                    for(int j = 0; j < projectArrayList.size(); j++) {
+                        projectArrayList.get(j).add(dete.getN());
+                    }
+                }
+            }
         }
         SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getMyTree());
         MainFrame.getInstance().getMyTree().expandPath(MainFrame.getInstance().getMyTree().getSelectionPath());
@@ -60,6 +67,7 @@ public class AddCommand extends AbstractCommand{
                 for(int j = 0; j < projectComposite.getNodeChildren().size(); j++) {
                     RuNodeComposite ruNodeComposite = (RuNodeComposite) projectComposite.getChildAt(j);
                     if (ruNodeComposite.getName().equals(dete.getN().getName())) {
+                        projectArrayList.add((Project) projectComposite);
                         projectComposite.removeChild(ruNodeComposite);
                     }
                 }
