@@ -1,5 +1,4 @@
-# rudok-strahinja-ljubicicRN71-20
-rudok-strahinja-ljubicicRN71-20 created by GitHub Classroom
+App made completely using JAVA and SWING library.
 
+Implemented Observer, Singleton, State, Command, Factory design patterns.
 
-Strahinja Ljubičić RN71-20
